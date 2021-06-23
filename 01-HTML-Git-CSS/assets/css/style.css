@@ -20,23 +20,23 @@ p {
 }
 
 /* Header Formatting */
-.header {
+header {
     padding: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #2a607c;
     color: #ffffff;
 }
 
-.header h1 {
+header h1 {
     display: inline-block;
     font-size: 48px;
 }
 
-.header h1 .seo {
+header h1 strong {
     color: #020202;
 }
 
-.header div {
+header nav {
     padding-top: 15px;
     margin-right: 20px;
     float: right;
@@ -44,23 +44,21 @@ p {
     font-size: 20px;
 }
 
-.header div ul {
+header nav ul {
     list-style-type: none;
 }
 
-.header div ul li {
+header nav ul li {
     display: inline-block;
     margin-left: 25px;
 }
 
-/* Background Image */
-.hero {
-    height: 800px;
+/* Team Work Image */
+.TeamWorkImage {
+    height: 825px;
     width: 100%;
+    object-fit: cover;
     margin-bottom: 25px;
-    background-image: url("../images/digital-marketing-meeting.jpg");
-    background-size: cover;
-    background-position: center;
 }
 
 /* Formatting for Services Content */
@@ -127,13 +125,13 @@ p {
 }
 
 /* Footer Formating */
-.footer {
+footer {
     padding: 30px;
     clear: both;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
 }
 
-.footer h1 {
+footer h1 {
     font-size: 20px;
 }
