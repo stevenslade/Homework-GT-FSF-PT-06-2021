@@ -1,10 +1,25 @@
+/* 
+* CSS TABLE OF CONTENTS
+*
+* 1.0 - Universal Formatting
+* 2.0 - Global Page Formatting
+* 3.0 - Header Formatting
+* 4.0 - Formatting for Team Image
+* 5.0 - Formatting for Services Content
+* 6.0 - Formatting for Benefits of provided services
+* 7.0 - Footer Formating
+*
+*/
+
+/*** 1.0 Universal Formatting ***/
+
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
-/* Page Formatting */
+/*** 2.0 Global Page Formatting ***/
 
 body {
     background-color: #d9dcd6;
@@ -19,7 +34,7 @@ p {
     font-size: 16px;
 }
 
-/* Header Formatting */
+/*** 3.0 Header Formatting ***/
 header {
     padding: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -53,7 +68,7 @@ header nav ul li {
     margin-left: 25px;
 }
 
-/* Team Work Image */
+/*** 4.0 Team Work Image ***/
 .TeamWorkImage {
     height: 825px;
     width: 100%;
@@ -61,7 +76,7 @@ header nav ul li {
     margin-bottom: 25px;
 }
 
-/* Formatting for Services Content */
+/*** 5.0 Formatting for Services Content ***/
 .float-left {
     float: left;
     margin-right: 25px;
@@ -96,7 +111,7 @@ header nav ul li {
     font-size: 36px;
 }
 
-/* Formatting for Benefits of provided services */
+/*** 6.0 Formatting for Benefits of provided services ***/
 .benefits {
     margin-right: 20px;
     padding: 20px;
@@ -124,7 +139,7 @@ header nav ul li {
     max-width: 150px;
 }
 
-/* Footer Formating */
+/*** 7.0 Footer Formating ***/
 footer {
     padding: 30px;
     clear: both;
