@@ -1,0 +1,88 @@
+/* create custom CSS variables and apply them to the root of the page,
+ making them accessible to all other CSS */
+:root {
+    /* declare a variable with `--` syntax */
+    --dark: #13293d;
+    --light: #fff;
+  }
+
+
+/*Change Header to flex container, add background color */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3%;
+    background-color: var(--dark);
+    color: var(--light);
+  }
+
+  /* Change font size of my name */
+header h1 {
+    font-size: 200%;
+  }
+
+  /* Change all h2 font size */
+h2 {
+    font-size: 150%;
+    color: var(--dark);
+}
+
+/* Set nav anchor links to light color, make the text bold, 
+get rid of the underline */
+nav a {
+    color: var(--light);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Make nav elements flex */
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
+}
+
+
+.contactme {
+    display:flex;
+    justify-content: left;
+    align-items: center;
+    padding: 1%;
+}
+
+/* Add contactheader padding */
+.contactme h2 {
+    padding: 1%;
+}
+
+.contactme div {
+    display: flex;
+    border-left-style:solid;
+    border-color: var(--dark);
+    border-width: thick;
+} 
+
+/*set minimum width and padding for contact me actions */
+.contactme p {
+    min-width: 200px;
+    padding-left: 10%;
+}
+
+/*Remove lines under contact me links, make font bold */
+.contactme a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 150%;
+    color: var (--dark);
+}
+
+
+/* Have my header and main stack in a column under 768px screens */
+@media screen and (max-width: 768px) {
+    header,
+    main, 
+    .contactme {
+      flex-direction: column;
+    }
+}
