@@ -50,6 +50,44 @@ nav ul {
     min-height: 10px;
 }
 
+#aboutme {
+    display:flex;
+    /* flex-wrap: wrap; */
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1%;
+    padding: 1%;
+    border-style: solid;
+}
+
+#aboutme h2 {
+
+}
+
+.mydetails {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 1%;
+    align-items: center;
+    border-left-style:solid;
+    border-color: var(--bordercolor);
+    border-width: thick;
+}
+
+.mydetails img {
+    margin: 1%;
+    margin-left: 5%;
+    padding-right: 5%;
+
+}
+
+.mydetails p {
+    max-width: 600px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
 #contactme {
     display: flex;
     justify-content: left;
@@ -91,10 +129,17 @@ nav ul {
     min-width: 500px;
 } 
 
+footer {
+    text-align: center;
+}
+
 /* Tablets - header changes color */
 @media screen and (max-width: 992px) {
     header {
       background: slategray;
+    }
+    .highlightbar {
+        background-color: var(--dark)
     }
   }
   
@@ -102,7 +147,8 @@ nav ul {
   /* Large smartphones */
   @media screen and (max-width: 768px) {
     header,
-    main,  {
+    main,
+    #aboutme  {
       flex-direction: column;
     }
 }
