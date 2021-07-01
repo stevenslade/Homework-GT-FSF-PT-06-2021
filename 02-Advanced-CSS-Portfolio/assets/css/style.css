@@ -1,15 +1,16 @@
-/* create custom CSS variables and apply them to the root of the page,
- making them accessible to all other CSS */
+/* create custom CSS variables and apply them to the root */
 :root {
     /* declare a variable with `--` syntax */
     --dark: #13293d;
     --light: #fff;
+    --bordercolor: #b9c6ae;
   }
 
 
 /*Change Header to flex container, add background color */
 header {
     display: flex;
+    flex-wrap:wrap;
     justify-content: space-between;
     align-items: center;
     padding: 3%;
@@ -43,46 +44,73 @@ nav ul {
     min-width: 300px;
 }
 
+.highlightbar {
+    background-color: var(--bordercolor);
+    width: 100%;
+    min-height: 10px;
+}
 
-.contactme {
-    display:flex;
+#contactme {
+    display: flex;
     justify-content: left;
     align-items: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
     padding: 1%;
+    background-color: var(--dark);
+    flex-wrap:wrap;
 }
 
 /* Add contactheader padding */
-.contactme h2 {
+#contactme h2 {
     padding: 1%;
+    color: var(--light);
 }
 
-.contactme div {
+#contactme div {
     display: flex;
     border-left-style:solid;
-    border-color: var(--dark);
+    border-color: var(--bordercolor);
     border-width: thick;
 } 
 
-/*set minimum width and padding for contact me actions */
-.contactme p {
-    min-width: 200px;
-    padding-left: 10%;
+/*Position and padding for contact me list items*/
+#contactme ul {
+    padding-left: 20%;
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
 }
 
-/*Remove lines under contact me links, make font bold */
-.contactme a {
+/*Remove line and format text for contact me links */
+#contactme ul a {
     text-decoration: none;
     font-weight: bold;
-    font-size: 150%;
-    color: var (--dark);
-}
+    font-size: 125%;
+    color: var(--light);
+    min-width: 500px;
+} 
 
-
-/* Have my header and main stack in a column under 768px screens */
-@media screen and (max-width: 768px) {
+/* Tablets - header changes color */
+@media screen and (max-width: 992px) {
+    header {
+      background: slategray;
+    }
+  }
+  
+  /* Have my header and main stack in a column under 768px screens */
+  /* Large smartphones */
+  @media screen and (max-width: 768px) {
     header,
-    main, 
-    .contactme {
+    main,  {
       flex-direction: column;
     }
 }
+  
+  /* Small smartphones - stack contact me section column */
+  @media screen and (max-width: 576px) {
+    #contactme {
+      flex-direction: column;
+      background:slategray;
+    }
+  }
