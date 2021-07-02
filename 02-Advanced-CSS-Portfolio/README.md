@@ -4,9 +4,7 @@ Assignment for second week, building a portfolio page
 
 ## ScreenShot 
 
- This is placeholder until screenshot for this project is available
-
-![screenshot of homework](./assets/images/Screenshot-2021-06-24-110609.png)
+![screenshot of homework](./assets/images/portfoliSS.png)
 
 
 ## Link to URL of the deployed application 
