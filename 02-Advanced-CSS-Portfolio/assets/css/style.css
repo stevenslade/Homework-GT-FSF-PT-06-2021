@@ -29,6 +29,11 @@ h2 {
     color: var(--dark);
 }
 
+/*set font for paragraph text */
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /* Set nav anchor links to light color, make the text bold, 
 get rid of the underline */
 nav a {
@@ -52,16 +57,11 @@ nav ul {
 
 #aboutme {
     display:flex;
-    /* flex-wrap: wrap; */
     justify-content: flex-start;
     align-items: center;
     margin: 1%;
     padding: 1%;
     border-style: solid;
-}
-
-#aboutme h2 {
-
 }
 
 .mydetails {
@@ -76,7 +76,7 @@ nav ul {
 
 .mydetails img {
     margin: 1%;
-    margin-left: 5%;
+    padding-left: 10%;
     padding-right: 5%;
 
 }
@@ -87,6 +87,51 @@ nav ul {
     margin-right: 10%;
 }
 
+#projects {
+    display: flex;
+    margin: 1%;
+    padding: 1%;
+    border-style: solid;
+}
+
+/*Bring Project header level with verticle line */
+#projects h2 {
+    padding-top: 1%;
+}
+
+/* Make the conatainer holding all the projects a flex conatiner */
+/* and add some formatting */
+.projectlist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 1%;
+    padding: 1%;
+    align-items: center;
+    border-left-style:solid;
+    border-color: var(--bordercolor);
+    border-width: thick;
+}
+
+/*Format the spacing for individual project elements */
+
+.projectlist div {
+    display: flex;
+    align-items: center;
+    margin: 1%;
+    padding: 1%;
+    border-style:groove;
+    flex: 1 1 40%;
+}
+
+.projectlist p {
+    padding: 2%;
+}
+
+/*project 1 will get specific formattting to highlight it */
+.project1 {
+    min-width: 100%;
+}
 
 #contactme {
     display: flex;
@@ -144,12 +189,24 @@ footer {
   }
   
   /* Have my header and main stack in a column under 768px screens */
-  /* Large smartphones */
+  /* Large smartphones, remove the vertical lines, center the projects */
+  /* list */
   @media screen and (max-width: 768px) {
     header,
     main,
-    #aboutme  {
+    #aboutme,
+    #projects,
+    .projectlist div  {
       flex-direction: column;
+    }
+
+    #projects {
+        align-items: center;
+    }
+
+    .mydetails,
+    .projectlist {
+        border-left-style:hidden;
     }
 }
   
@@ -158,5 +215,9 @@ footer {
     #contactme {
       flex-direction: column;
       background:slategray;
+    }
+
+    #contactme div {
+        border-left-style:hidden;
     }
   }
