@@ -4,9 +4,7 @@ Assignment for third week, Javascript Password Genertor
 
 ## ScreenShot 
 
-THIS NEEDS TO BE UPDATED FOR WEEK 3
-
-![screenshot of homework](./assets/images/portfoliSS.png)
+![screenshot of homework](./assets/images/JavascriptPasswordGeneratorSS.png)
 
 
 ## Link to URL of the deployed application 

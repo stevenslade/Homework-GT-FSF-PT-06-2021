@@ -45,7 +45,6 @@ lowCaseChoice = lowCaseChoice.toUpperCase();
 if (lowCaseChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(lowCaseCharArray);
   }
-console.log(passCharSelectionArray);
 
 //Second prompt is for uppercase letters
 var upCaseChoice = prompt('Do you wish for your Password to contain Upper Case letters? Please enter "Y" or "N"');
@@ -53,7 +52,6 @@ upCaseChoice = upCaseChoice.toUpperCase();
 if (upCaseChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(upCaseCharArray);
   }
-console.log(passCharSelectionArray);
 
 //Third prompt is for numeric characters
 var numCaseChoice = prompt('Do you wish for your Password to contain numeric characters? Please enter "Y" or "N"');
@@ -61,7 +59,6 @@ numCaseChoice = numCaseChoice.toUpperCase();
 if (numCaseChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(numArray);
   }
-  console.log(passCharSelectionArray);
 
 //Fourth prompt is for special characters
 var specCharChoice = prompt('Do you wish for your Password to contain special characters? Please enter "Y" or "N"');
@@ -69,7 +66,6 @@ specCharChoice = specCharChoice.toUpperCase();
 if (specCharChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(specCharArray);
   }
-console.log(passCharSelectionArray);
 
 //If the user did not select any character sets the program will end and give an alert
 if (passCharSelectionArray.length <1) {
@@ -81,7 +77,7 @@ if (passCharSelectionArray.length <1) {
 //between 8 and 128 characters
 var passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
 
-//Keep asking the question if the incorrect length is specified
+//Keep asking the question if an incorrect length is specified
 while (passwordLength <8 || passwordLength > 128) {
   passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
   }
