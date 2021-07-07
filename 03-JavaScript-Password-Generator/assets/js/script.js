@@ -13,9 +13,13 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+//Write a function called "generatePassword"
+function generatePassword() {
+
+//Declare one array for each type of character set
 
 //Array of numbers
-var numArray = [0,1,2,3,4,5,6,7,8,9];
+var numArray = ["0","1","2","3","4","5","6","7","8","9"];
 
 //Array of lower case letters
 var lowCaseCharArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -25,10 +29,6 @@ var upCaseCharArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","
 
 //Array of special characters, space, comma, double quotations marks removed from OWASP list
 var specCharArray = ["!","#","$","%","&","(",")","*","+","-",".","/",":",";","<","=",">","?","@","[","\","^"","{","|","}","~"];
-
-
-//Write a function called "generatePassword"
-function generatePassword() {
 
 //make a local array to assemble acceptable char types
 var passCharSelectionArray = [];
@@ -71,17 +71,35 @@ if (specCharChoice === "Y") {
   }
 console.log(passCharSelectionArray);
 
+//If the user did not select any character sets the program will end and give an alert
+if (passCharSelectionArray.length <1) {
+  alert("You did not select any character sets, no password generation possible.");
+  return (" ");
+}
+
 //Then I need to use a prompt to determine the length of the password 
 //between 8 and 128 characters
 var passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
-console.log("Password length: ", passwordLength);
 
-//Then I make a passwordArray by running a random selector over the passwordCharlist
+//Keep asking the question if the incorrect length is specified
+while (passwordLength <8 || passwordLength > 128) {
+  passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
+  }
+
+//Then I make a passwordArray by running a random selector over the password character selection array
 //in a loop of the password length
-
+var passwordArray = [];
+var i = 0;
+while (i<passwordLength) {
+  var randomChar = passCharSelectionArray[Math.floor(Math.random()*passCharSelectionArray.length)];
+  passwordArray.push(randomChar);
+  i++;
+}
 
 //Then this password needs to get returned to the function call in the form of a 
-//string.  this might require a conversion from array to string
+//string.  This requires a conversion from array to string
+var passwordString = passwordArray.join("");
 
+return passwordString;
 }
 
