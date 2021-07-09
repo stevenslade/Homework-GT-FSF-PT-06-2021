@@ -9,8 +9,6 @@ Assignment for third week, Javascript Password Genertor
 
 ## Link to URL of the deployed application 
 
-THIS NEEDS TO BE CONFIRMED UPDATED TO WEEK 3
-
 (https://stevenslade.github.io/Homework-GT-FSF-PT-06-2021/03-JavaScript-Password-Generator/)
 
 
