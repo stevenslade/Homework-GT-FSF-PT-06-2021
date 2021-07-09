@@ -13,6 +13,9 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+//make a global array to assemble acceptable char types
+var passCharSelectionArray = [];
+
 //Write a function called "generatePassword"
 function generatePassword() {
 
@@ -30,57 +33,48 @@ var upCaseCharArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","
 //Array of special characters, space, double quotation and backslash removed from OWASP list
 var specCharArray = ['!','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[',']','^','_','`','{','|','}','~'];
 
-//make a local array to assemble acceptable char types
-var passCharSelectionArray = [];
-
 //Prompts to inquire to user about four types of possible characters
-//For each prompt I need to assemble an array of acceptable characters
 
 //Alert user to program options
 alert("You will be given the chance to select from four types of characters to include in your password.  Lower and Upper case letters, Numbers and Symbols.  You must select at least one character set.");
 
 //First prompt lowercase letters
-var lowCaseChoice = prompt('Do you wish for your Password to contain Lower Case letters? Please enter "Y" or "N"');
-//Normalize user input
-lowCaseChoice = lowCaseChoice.toUpperCase();
+var lowCaseChoice = getUserChoice("lower case letters");
+
+//use the check function to make sure the user has input Y or N
+lowCaseChoice = checkUserChoice(lowCaseChoice, "lower case letters")
 
 //Add lower case characters if selected
-if (lowCaseChoice === "Y") {
-    passCharSelectionArray = passCharSelectionArray.concat(lowCaseCharArray);
-    alert("You selected to include lower case letters.");
-  } else {
-      alert("You choose Not to include lower case letters.");
-  }
+addCharToArray(lowCaseChoice, lowCaseCharArray, "lower case letters");
 
 //Second prompt is for uppercase letters
-var upCaseChoice = prompt('Do you wish for your Password to contain Upper Case letters? Please enter "Y" or "N"');
-upCaseChoice = upCaseChoice.toUpperCase();
-if (upCaseChoice === "Y") {
-    passCharSelectionArray = passCharSelectionArray.concat(upCaseCharArray);
-    alert("You selected to include upper case letters.");
-  } else {
-      alert("You choose Not to include upper case letters.");
-  }
+var upCaseChoice = getUserChoice("upper case letters");
 
+//use the check function to make sure the user has input Y or N
+upCaseChoice = checkUserChoice(upCaseChoice, "upper case letters")
+
+//add upper case letters to seclection array
+addCharToArray(upCaseChoice, upCaseCharArray, "upper case letters");
+   
 //Third prompt is for numeric characters
-var numCaseChoice = prompt('Do you wish for your Password to contain numeric characters? Please enter "Y" or "N"');
-numCaseChoice = numCaseChoice.toUpperCase();
-if (numCaseChoice === "Y") {
-    passCharSelectionArray = passCharSelectionArray.concat(numArray);
-    alert("You selected to include numeric characters.");
-  } else {
-      alert("You choose Not to include numeric characters.");
-  }
+var numCaseChoice = getUserChoice("numeric characters");
+
+//use the check function to make sure the user has input Y or N
+numCaseChoice = checkUserChoice(numCaseChoice, "numeric characters")
+
+//Numeric characters added to selection Array
+addCharToArray(numCaseChoice, numArray, "numeric characters");
 
 //Fourth prompt is for special characters
-var specCharChoice = prompt('Do you wish for your Password to contain special characters? Please enter "Y" or "N"');
-specCharChoice = specCharChoice.toUpperCase();
-if (specCharChoice === "Y") {
-    passCharSelectionArray = passCharSelectionArray.concat(specCharArray);
-    alert("You selected to include special characters.");
-  } else {
-      alert("You choose Not to include special characters.");
-  }
+var specCharChoice = getUserChoice("special characters");
+
+//use the check function to make sure the user has input Y or N
+specCharChoice = checkUserChoice(specCharChoice, "special characters")
+
+//Special characters added to selection array
+addCharToArray(specCharChoice, specCharArray, "special characters");
+
+//Everything below this line is Final
 
 //If the user did not select any character sets the program will end and give an alert
 if (passCharSelectionArray.length <1) {
@@ -88,9 +82,10 @@ if (passCharSelectionArray.length <1) {
   return (" ");
 }
 
-//Then I need to use a prompt to determine the length of the password 
+//use a prompt to determine the length of the password 
 //between 8 and 128 characters
-var passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
+var passwordLength = 0;
+passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
 
 //Keep asking the question if an incorrect length is specified
 while (passwordLength <8 || passwordLength > 128) {
@@ -111,6 +106,32 @@ while (i<passwordLength) {
 //string.  This requires a conversion from array to string
 var passwordString = passwordArray.join("");
 
+//return the password
 return passwordString;
+}
+
+
+function getUserChoice(characterSet) {
+  //prompt user to determine if using character set
+  var userChoice = prompt('Do you wish for your Password to contain ' + characterSet +'? Please enter "Y" or "N"');
+  //Normalize user input
+  userChoice = userChoice.toUpperCase();
+  return userChoice;
+}
+
+function checkUserChoice(userChoice, characterSet) {
+  while (userChoice !== "Y" && userChoice !== "N") {
+    userChoice = prompt('You must enter "Y" or "N" for ' + characterSet);
+    userChoice = userChoice.toUpperCase();
+  } return userChoice;
+}
+
+function addCharToArray(userChoice, characterArray, characterSet) {
+  if (userChoice === "Y") {
+    passCharSelectionArray = passCharSelectionArray.concat(characterArray);
+    alert("You selected to include " + characterSet + ".");
+  } else {
+      alert("You choose Not to include " + characterSet + ".");
+  }
 }
 
