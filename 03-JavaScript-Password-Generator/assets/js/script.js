@@ -27,14 +27,17 @@ var lowCaseCharArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n",
 //Array of uppercase letters
 var upCaseCharArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
-//Array of special characters, space, comma, double quotations marks removed from OWASP list
-var specCharArray = ["!","#","$","%","&","(",")","*","+","-",".","/",":",";","<","=",">","?","@","[","\","^"","{","|","}","~"];
+//Array of special characters, space, double quotation and backslash removed from OWASP list
+var specCharArray = ['!','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','[',']','^','_','`','{','|','}','~'];
 
 //make a local array to assemble acceptable char types
 var passCharSelectionArray = [];
 
 //Prompts to inquire to user about four types of possible characters
 //For each prompt I need to assemble an array of acceptable characters
+
+//Alert user to program options
+alert("You will be given the chance to select from four types of characters to include in your password.  Lower and Upper case letters, Numbers and Symbols.  You must select at least one character set.");
 
 //First prompt lowercase letters
 var lowCaseChoice = prompt('Do you wish for your Password to contain Lower Case letters? Please enter "Y" or "N"');
@@ -44,6 +47,9 @@ lowCaseChoice = lowCaseChoice.toUpperCase();
 //Add lower case characters if selected
 if (lowCaseChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(lowCaseCharArray);
+    alert("You selected to include lower case letters.");
+  } else {
+      alert("You choose Not to include lower case letters.");
   }
 
 //Second prompt is for uppercase letters
@@ -51,6 +57,9 @@ var upCaseChoice = prompt('Do you wish for your Password to contain Upper Case l
 upCaseChoice = upCaseChoice.toUpperCase();
 if (upCaseChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(upCaseCharArray);
+    alert("You selected to include upper case letters.");
+  } else {
+      alert("You choose Not to include upper case letters.");
   }
 
 //Third prompt is for numeric characters
@@ -58,6 +67,9 @@ var numCaseChoice = prompt('Do you wish for your Password to contain numeric cha
 numCaseChoice = numCaseChoice.toUpperCase();
 if (numCaseChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(numArray);
+    alert("You selected to include numeric characters.");
+  } else {
+      alert("You choose Not to include numeric characters.");
   }
 
 //Fourth prompt is for special characters
@@ -65,11 +77,14 @@ var specCharChoice = prompt('Do you wish for your Password to contain special ch
 specCharChoice = specCharChoice.toUpperCase();
 if (specCharChoice === "Y") {
     passCharSelectionArray = passCharSelectionArray.concat(specCharArray);
+    alert("You selected to include special characters.");
+  } else {
+      alert("You choose Not to include special characters.");
   }
 
 //If the user did not select any character sets the program will end and give an alert
 if (passCharSelectionArray.length <1) {
-  alert("You did not select any character sets, no password generation possible.");
+  alert("You did not select any character sets, no password generation possible. Start again and select at least one character set.");
   return (" ");
 }
 
