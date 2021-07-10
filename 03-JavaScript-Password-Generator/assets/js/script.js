@@ -74,8 +74,6 @@ specCharChoice = checkUserChoice(specCharChoice, "special characters")
 //Special characters added to selection array
 addCharToArray(specCharChoice, specCharArray, "special characters");
 
-//Everything below this line is Final
-
 //If the user did not select any character sets the program will end and give an alert
 if (passCharSelectionArray.length <1) {
   alert("You did not select any character sets, no password generation possible. Start again and select at least one character set.");
@@ -86,10 +84,13 @@ if (passCharSelectionArray.length <1) {
 //between 8 and 128 characters
 var passwordLength = 0;
 passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
+//parseInt turns passwordLength into NaN in the event the user entered text
+passwordLength = parseInt(passwordLength);
 
-//Keep asking the question if an incorrect length is specified
-while (passwordLength <8 || passwordLength > 128) {
+//Keep asking the question if an incorrect length is specified or if the user entered a character 
+while (isNaN (passwordLength) || (passwordLength <8 || passwordLength > 128)) {
   passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
+  passwordLength = parseInt(passwordLength);
   }
 
 //Then I make a passwordArray by running a random selector over the password character selection array
