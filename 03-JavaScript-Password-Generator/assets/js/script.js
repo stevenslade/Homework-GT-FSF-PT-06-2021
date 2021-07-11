@@ -80,20 +80,15 @@ if (passCharSelectionArray.length <1) {
   return (" ");
 }
 
-//use a prompt to determine the length of the password 
-//between 8 and 128 characters
+//Initialize password as a number lower than the required length to start the user input loop for length
 var passwordLength = 0;
-passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
-//parseInt turns passwordLength into NaN in the event the user entered text
-passwordLength = parseInt(passwordLength);
-
-//Keep asking the question if an incorrect length is specified or if the user entered a character 
+//Ask for password length in a loop to check length and input type
 while (isNaN (passwordLength) || (passwordLength <8 || passwordLength > 128)) {
   passwordLength = prompt('Please select a password length between 8 and 128 characters: ');
   passwordLength = parseInt(passwordLength);
   }
 
-//Then I make a passwordArray by running a random selector over the password character selection array
+//Make a passwordArray by running a random selector over the password character selection array
 //in a loop of the password length
 var passwordArray = [];
 var i = 0;
