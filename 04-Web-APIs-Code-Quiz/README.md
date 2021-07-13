@@ -25,3 +25,6 @@ This link will take you to my homework repo (https://github.com/stevenslade/Home
 needs to be updated for week 4
 
 This link will take you to the homework for this week, "03 Javascript Password Generator" folder inside my repo (https://github.com/stevenslade/Homework-GT-FSF-PT-06-2021/tree/main/03-JavaScript-Password-Generator)
+
+
+## THIS Line is added as a test
