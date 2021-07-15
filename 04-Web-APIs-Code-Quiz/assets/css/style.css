@@ -22,7 +22,6 @@
     text-align: center;
     background: #13293d;
     color: #fff;
-    border-bottom:30px #879274;
   }
 
   header div {
@@ -35,6 +34,10 @@
   }
 
   main section {
+      /* this centering is not working */
+      display:flex;
+      display:block;
+      justify-content: center;
       border: solid;
       border-color: #13293d;
       border-radius: 5%;
@@ -42,6 +45,14 @@
       padding: 30px;
   }
 
+  button {
+      background-color:#13293d;
+      font-weight: bold;
+      color:#fff;
+      margin: 10px;
+      padding: 5px;
+      
+  }
   /* keep this content but check it*/
 @media screen and (max-width: 504px) {
     .large-font {
