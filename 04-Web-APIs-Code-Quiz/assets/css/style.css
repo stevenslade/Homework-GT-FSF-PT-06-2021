@@ -34,15 +34,20 @@
   }
 
   main section {
-      /* this centering is not working */
-      display:flex;
-      display:block;
-      justify-content: center;
       border: solid;
       border-color: #13293d;
-      border-radius: 5%;
+      border-radius: 20px;
       margin:30px;
       padding: 30px;
+  }
+
+  main section div {
+    display:flex;
+    justify-content: center;
+  }
+
+  #intro {
+    display:block;
   }
 
   button {
