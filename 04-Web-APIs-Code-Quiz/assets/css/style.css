@@ -34,9 +34,6 @@
   }
 
   main section {
-      border: solid;
-      border-color: #13293d;
-      border-radius: 20px;
       margin:30px;
       padding: 30px;
   }
@@ -48,6 +45,29 @@
 
   #intro {
     display:block;
+    border: solid;
+    border-color: #13293d;
+    border-radius: 20px;
+    margin:30px;
+    padding: 30px;
+  }
+
+  #question-container {
+    display:block;
+    border: solid;
+    border-color: #13293d;
+    border-radius: 20px;
+    margin:30px;
+    padding: 30px;
+  }
+
+  #score-container {
+    display:block;
+    border: solid;
+    border-color: #13293d;
+    border-radius: 20px;
+    margin:30px;
+    padding: 30px;
   }
 
   button {

@@ -1,6 +1,8 @@
 //Declare my variables
-var introHeader = document.querySelector("h1");
-var instructions = document.querySelector("#instructions");
+var introContainer = document.querySelector("#intro");
+var questionContainer = document.querySelector("#question-container");
+var scoreContainer = document.querySelector("#score-container");
+
 var highScore = document.querySelector('#highscore');
 var question = document.querySelector('#question');
 var answerChoices = document.querySelector("#answer-choices");
@@ -21,7 +23,7 @@ var score;
 
 var quizQuestions = [
     {
-      question: "Q1",
+      question: "This is question one",
       answers: {
         a: "A1",
         b: "B1",
@@ -74,10 +76,7 @@ var quizQuestions = [
 
 //init function - when page loads it presents the instructions, header and a start button, it clears questions, submit and high scores
 function init() {
-    introHeader.textContent = "Coding Quiz Challenge";
-    instructions.textContent = "Answer the following questions as quickly as possible to acheive a high score. Incorrect answers will penalize you ten seconds."
-    highScore.textContent = "";
-    question.textContent = "";  
+    //This function used to do something
 }
 
 
@@ -87,6 +86,8 @@ function startGame() {
     timerCount = 75;
     // Prevents start button from being clicked when round is in progress
     startButton.disabled = true;
+    introContainer.style.display = "none";
+
     startTimer()
     askQuestions();
   }
@@ -96,8 +97,8 @@ function askQuestions() {
     var response;
     for (var i =0; i < quizQuestions.length; i++) {
         question.textContent = quizQuestions[i].question;
+        //Trying to populate multiple choices, it doesn't work
         answerChoices.textContent = quizQuestions[i].answers.a;
-        response = window.prompt('Answer');
     }
 }
 
@@ -118,7 +119,7 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       timerElement.textContent = "Timer: " + timerCount;
-      //thisneeds to be if timer >0 and all questions answered save time, clear interval, win game
+      //this needs to be if timer >0 and all questions answered save time, clear interval, win game
       if (timerCount >= 0 ) {
         // Tests if win condition is met
         //if (isWin && timerCount > 0) {
