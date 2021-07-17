@@ -19,11 +19,18 @@ var isWin = false;
 var userInitials;
 var score;
 
-//questions
+//questions with placeholder information
 
 var quizQuestions = [
     {
       question: "This is question one",
+      a: "A1",
+      b: "B1",
+      c: "Correct",
+      d: "D1",
+      correctAnswer: "c"
+    }
+
       answers: {
         a: "A1",
         b: "B1",

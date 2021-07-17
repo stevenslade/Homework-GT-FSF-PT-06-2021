@@ -43,6 +43,23 @@
     justify-content: center;
   }
 
+  /* This is not working when I add display: flex to ul li */
+  ul {
+    list-style-type: lower-alpha;
+    max-width: 400px;
+    display
+  }
+
+  ul li {
+    display: flex;
+    justify-content: center;
+    background-color:#13293d;
+    font-weight: bold;
+    color:#fff;
+    margin: 10px;
+    padding: 5px;
+  }
+
   #intro {
     display:block;
     border: solid;
@@ -76,7 +93,6 @@
       color:#fff;
       margin: 10px;
       padding: 5px;
-      
   }
   /* keep this content but check it*/
 @media screen and (max-width: 504px) {
