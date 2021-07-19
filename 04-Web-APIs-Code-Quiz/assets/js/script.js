@@ -39,28 +39,28 @@ var questionIndex;
 
 var quizQuestions = [
     {
-      question: "This is question one",
-      answers: ["A1", "B1", "Correct", "D1"],
+      question: "In Javascript, what property do you use to determine the number of elements in an array?",
+      answers: [".elements", ".ArrayElements", "Correct - .length", ".arguments"],
       correctAnswer: "c"
     },
     {
-      question: "Q2",
-      answers: ["Correct", "B1", "C1", "D1"],
+      question: "In Javascript, JSON values can be all but which of the following data types?",
+      answers: ["Correct - a function", "a string", "a number", "null"],
       correctAnswer: "a"
     },
     {
-      question: "Q3",
-      answers: ["A1", "Correct", "C1", "D1"],
+      question: "In JavaScript all the following are comparison operators except which?",
+      answers: ["==", "Correct - !", "===", "<"],
       correctAnswer: "b"
     },
     {
-        question: "Q4",
-        answers: ["A1", "B1", "Correct", "D1"],
+        question: "Array indexes are ______-based in Javascript.  What word completes the statement correctly?",
+        answers: ["key", "origin", "Correct - zero", "number"],
         correctAnswer: "c"
       },
       {
-        question: "Q5",
-        answers: ["A1", "B1", "Correct", "D1"],
+        question: "What is used to store multiple values in a single variable in JavaScript?",
+        answers: ["object", "concat", "Correct - array", "string"],
         correctAnswer: "c"
       }
   ];
@@ -77,7 +77,7 @@ function init() {
 // The startGame function is called when the start button is clicked
 function startGame() {
     questionIndex = 0;
-    timerCount = 5;
+    timerCount = 75;
     // Prevents start button from being clicked when round is in progress
     //startButton.disabled = true;
     introContainer.style.display = "none";
