@@ -8,19 +8,19 @@
   </head>
   <body>
     <header>
-      <div id="high-score">View HighScores</div>
+      <div><button id="high-score">View HighScores</button></div>
       <div id="timer-count">Timer:</button>
     </header>
 
     <main>
       <section>
-        <div id="intro">
+        <div id="intro" class="card">
             <h1>Coding Quiz Challenge</h1>
             <p>Answer the following questions as quickly as possible to acheive a high score. Incorrect answers will penalize you ten seconds.</p>
             <div><button id="start-button">Start</button></div>
         </div>
 
-        <div id="question-container">
+        <div id="question-container" class="card">
             <div id="question">Question Placeholder</div>
             <ul id="choicelist">
               <li id="achoice">choice a</li>
@@ -28,11 +28,26 @@
               <li id="cchoice">choice c</li>
               <li id="dchoice">choice d</li>
             </ul>
+            <div id="correct-message">
+               <hr>
+               <p>correct</p>
+            </div>
         </div>
 
-        <div id="score-container">
-          <div><ul id="highscore">High Score Placeholder</ul></div>
+        <div id="summary" class="card">
+          <h1>All Done!</h1>
+          <p id="score-message">score message</p>
+          <label for="initials">Enter Initials</label>
+          <input type="text" name="initials" id="initials" placeholder="" />
+          <div><button id="submit-button">Submit</button></div>
         </div>
+
+        <div id="score-container" class="card">
+          <div><ul id="highscore">High Score Placeholder</ul></div>
+          <div><button id="clear-button">Clear Scores</button></div>
+          <div><button id="return-button">Return</button></div>
+        </div>
+
       </section>
 
     </main>
