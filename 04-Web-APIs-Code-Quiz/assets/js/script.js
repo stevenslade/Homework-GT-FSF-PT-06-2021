@@ -24,13 +24,15 @@ var clearButton = document.querySelector("#clear-button");
 var timer;
 var timerCount;
 
-var initials = "BSS";
-var score = 10;
+var initials = "";
+var score = 0;
 
 var respose;
 
+var correctAnswer;
+
 //New variables to attempt the render question method
-var questionCounter = 0;
+var questionIndex;
 
 
 //questions with placeholder information
@@ -66,29 +68,28 @@ var quizQuestions = [
 //init function - when page loads it presents the instructions, header and a start button, it clears questions, submit and high scores
 function init() {
     //This function will hide the uneeded cards at load
- console.log("I'm init");
  introContainer.style.display = "block";
- //these will be uncommented to activate hidden when page loads
- //questionContainer.style.display = "none";
- //scoreContainer.style.display = "none";
- //summaryContainer.style.display = "none"; 
+ questionContainer.style.display = "none";
+ scoreContainer.style.display = "none";
+ summaryContainer.style.display = "none"; 
 }
 
 // The startGame function is called when the start button is clicked
 function startGame() {
-  
-    timerCount = 75;
+    questionIndex = 0;
+    timerCount = 5;
     // Prevents start button from being clicked when round is in progress
-    startButton.disabled = true;
+    //startButton.disabled = true;
     introContainer.style.display = "none";
-
+    questionContainer.style.display = "block";
+    scoreContainer.style.display = "none";
+    summaryContainer.style.display = "none";
+    correctMessage.style.display ="none";
     startTimer()
-    askQuestions();
+    renderQuestion();
   }
 
-// Function to cycle thru the questions
-
-// This function needs an redo, once the start game button is pressed the 
+// Once the start game button is pressed the 
 // question-container should be displayed
 // the question container should use questioncounter to populate the card
 // each choice would need to be a button
@@ -96,52 +97,51 @@ function startGame() {
 // compare answer adjusts score and increments the questioncounter, it runs ask 
 // question until the counter reaches the max value
 
-// var questionIndex = 0;
-
 function renderQuestion(){
 
         question.textContent = quizQuestions[questionIndex].question;
-        achoice.textContent = quizQuestions[i].answers[0];
-        bchoice.textContent = quizQuestions[i].answers[1];
-        cchoice.textContent = quizQuestions[i].answers[2];
-        dchoice.textContent = quizQuestions[i].answers[3];
+        achoice.textContent = quizQuestions[questionIndex].answers[0];
+        bchoice.textContent = quizQuestions[questionIndex].answers[1];
+        cchoice.textContent = quizQuestions[questionIndex].answers[2];
+        dchoice.textContent = quizQuestions[questionIndex].answers[3];
 
-}
-
-function askQuestions() {
-  
-  response = "";
-
-    for (var i =0; i < quizQuestions.length; i++) {
-        correctMessage.style.display = "none";
-
-        question.textContent = quizQuestions[i].question;
-        achoice.textContent = quizQuestions[i].answers[0];
-        bchoice.textContent = quizQuestions[i].answers[1];
-        cchoice.textContent = quizQuestions[i].answers[2];
-        dchoice.textContent = quizQuestions[i].answers[3];
+        correctAnswer = quizQuestions[questionIndex].correctAnswer
 
         achoice.addEventListener("click", function() {
           response = "a";
-          console.log(response);
+          checkAnswer();
         });
 
+        bchoice.addEventListener("click", function() {
+          response = "b";
+          checkAnswer();
+        });
 
-        //collect a user click event
+        cchoice.addEventListener("click", function() {
+          response = "c";
+          checkAnswer();
+        });
 
-        //compare user click event to correct response
-
-        //if response if wrong, then decrease timer by five seconds
-        //else continue
-        
-        //using this broken line of code to pause the program
-        //answerChoices.textContent = quizQuestions[i].answers.a;
-    }
-    //outside the question asking loop, the main game is over, save score and run the summary function
+        dchoice.addEventListener("click", function() {
+          response = "d";
+          checkAnswer();
+        });
 }
 
-
-//display high score function - displays the high scores when the button is clicked
+function checkAnswer() {
+  if(response !== correctAnswer) {
+    timerCount -= 10;
+  }
+  if (questionIndex < quizQuestions.length) {
+  questionIndex++;
+  console.log("questionIndex: ", questionIndex)
+  renderQuestion();
+} else {
+  score = timerCount;
+  clearInterval(timer);
+  showSummary();
+}
+}
 
 //timer function - starts at 75 seconds counts down
 // The startTimer function starts and stops the timer 
@@ -152,54 +152,41 @@ function startTimer() {
       timerElement.textContent = "Timer: " + timerCount;
       //this needs to be if timer >0 and all questions answered save time, clear interval, win game
       if (timerCount >= 0 ) {
-        // Tests if win condition is met
-        //if (isWin && timerCount > 0) {
-          // Clears interval and stops timer
-          //clearInterval(timer);
-          //winGame();
-        //}
+        
       }
       // Tests if time has run out
       if (timerCount === 0) {
         // Clears interval
+        score = timerCount;
         clearInterval(timer);
-        //loseGame();
+        showSummary()
       }
     }, 1000);
   }
 
 function showSummary() {
  //This functions displays the summary card
- scoreContainer.style.display = "block";
+   introContainer.style.display = "none";
+   questionContainer.style.display = "none";
+   scoreContainer.style.display = "none";
+   summaryContainer.style.display = "block";
  // Displays the users score with a message
  scoreMessage.textContent = "You finished the Game with a score of " + score;
-
- //collects the users initals and stores in var userInitials
-
- //offers a button to submit your intials and automatically loads the high score page 
- // when submit is clicked
-
-
 }
 
 //This function responds to clicking submit button for user initials
   function submitButtonFunction () {
 
-  console.log("This game is epic");
-
   //collects input from tetxtbox
   initials = document.getElementById("initials").value
 
-  console.log("initials: ", initials);
-
   //it displays the high score card by running the showScore function
-  // showScores();
+  showScores();
 
-    };
+  }
     
 // This function shows high scores when you click on the high score button
 function showScores(){
-  console.log("clicked highscores");
 
 // should also run my scoreManager function
 manageScores();
@@ -230,20 +217,26 @@ function manageScores () {
     userInitScore.score = score;
     //add the inital score object to an array
     scoreArray.unshift(userInitScore);
-    console.log(scoreArray);
 
    // Put the array into storage
     localStorage.setItem('scores', JSON.stringify(scoreArray));
-
 }
   //populate a high score list on the score-container using append
-
-
+  for ( var i = 0; i < scoreArray.length; i++){
+       var node = document.createElement("LI");
+       var textnode = document.createTextNode(scoreArray[i].initials + "           " + scoreArray[i].score);
+       node.appendChild(textnode);
+       document.getElementById("high-score-list").appendChild(node);
+  }
 }
 
   //This function responds to clicking the clear button, it clears local memory
   function clearScores () {
+    initials = "";
+    score = 0;
     localStorage.clear();
+    //not working the way I'd like
+    location.reload();
   }
   
 
