@@ -194,8 +194,6 @@ function manageScores () {
   if (retrievedScores !== null) { 
   var scoreArray = JSON.parse(retrievedScores);
   }
-  console.log("scoreArray: ", scoreArray);
-  console.log("score: ", score);
 
   // if new initials and score add to the current storage array 
   if (initials !== "" && score !== 0) {
