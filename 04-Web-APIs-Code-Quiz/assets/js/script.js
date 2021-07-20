@@ -35,7 +35,7 @@ var correctAnswer;
 var questionIndex;
 
 
-//questions with placeholder information
+//question and answer array
 
 var quizQuestions = [
     {
@@ -107,32 +107,13 @@ function renderQuestion(){
 
         correctAnswer = quizQuestions[questionIndex].correctAnswer
 
-        achoice.addEventListener("click", function() {
-          response = "a";
-          checkAnswer();
-        });
-
-        bchoice.addEventListener("click", function() {
-          response = "b";
-          checkAnswer();
-        });
-
-        cchoice.addEventListener("click", function() {
-          response = "c";
-          checkAnswer();
-        });
-
-        dchoice.addEventListener("click", function() {
-          response = "d";
-          checkAnswer();
-        });
 }
 
 function checkAnswer() {
   if(response !== correctAnswer) {
     timerCount -= 10;
   }
-  if (questionIndex < quizQuestions.length) {
+  if (questionIndex < quizQuestions.length -1) {
   questionIndex++;
   console.log("questionIndex: ", questionIndex)
   renderQuestion();
@@ -254,6 +235,26 @@ highScore.addEventListener("click", showScores);
 
 //Event listener for return button
 returnButton.addEventListener("click", init);
+
+achoice.addEventListener("click", function() {
+  response = "a";
+  checkAnswer();
+});
+
+bchoice.addEventListener("click", function() {
+  response = "b";
+  checkAnswer();
+});
+
+cchoice.addEventListener("click", function() {
+  response = "c";
+  checkAnswer();
+});
+
+dchoice.addEventListener("click", function() {
+  response = "d";
+  checkAnswer();
+});
 
 // Calls init() when page loads
 init();
