@@ -45,22 +45,22 @@ var quizQuestions = [
     },
     {
       question: "In Javascript, JSON values can be all but which of the following data types?",
-      answers: ["Correct - a function", "a string", "a number", "null"],
+      answers: ["a function", "a string", "a number", "null"],
       correctAnswer: "a"
     },
     {
       question: "In JavaScript all the following are comparison operators except which?",
-      answers: ["==", "Correct - !", "===", "<"],
+      answers: ["==", " ! ", "===", "<"],
       correctAnswer: "b"
     },
     {
         question: "Array indexes are ______-based in Javascript.  What word completes the statement correctly?",
-        answers: ["key", "origin", "Correct - zero", "number"],
+        answers: ["key", "origin", "zero", "number"],
         correctAnswer: "c"
       },
       {
         question: "What is used to store multiple values in a single variable in JavaScript?",
-        answers: ["object", "concat", "Correct - array", "string"],
+        answers: ["object", "concat", "array", "string"],
         correctAnswer: "c"
       }
   ];
