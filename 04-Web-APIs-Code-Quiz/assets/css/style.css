@@ -45,19 +45,23 @@
 
   /* This is not working when I add display: flex to ul li */
   ul {
-    list-style-type: lower-alpha;
+    list-style-type: none;
     max-width: 400px;
-    display
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  ul li {
+  li {
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color:#13293d;
     font-weight: bold;
     color:#fff;
     margin: 10px;
     padding: 5px;
+    min-width: 150px;
   }
 
   .card {
@@ -67,6 +71,7 @@
     border-radius: 20px;
     margin:30px;
     padding: 30px;
+    min-width: 400px;
   }
 
   button {
@@ -76,7 +81,6 @@
       margin: 10px;
       padding: 5px;
   }
-  /* keep this content but check it*/
 @media screen and (max-width: 504px) {
     .large-font {
       font-size: 2em;

@@ -31,7 +31,7 @@ var respose;
 
 var correctAnswer;
 
-//New variables to attempt the render question method
+//Variable for render question function
 var questionIndex;
 
 
@@ -67,11 +67,16 @@ var quizQuestions = [
 
 //init function - when page loads it presents the instructions, header and a start button, it clears questions, submit and high scores
 function init() {
-    //This function will hide the uneeded cards at load
+    //This function hides the uneeded cards at load
  introContainer.style.display = "block";
  questionContainer.style.display = "none";
  scoreContainer.style.display = "none";
- summaryContainer.style.display = "none"; 
+ summaryContainer.style.display = "none";
+   //This cleans the user info and score in case you go right into another game
+   //without reloading the page
+  initials = "";
+  score = 0;
+
 }
 
 // The startGame function is called when the start button is clicked
@@ -115,7 +120,6 @@ function checkAnswer() {
   }
   if (questionIndex < quizQuestions.length -1) {
   questionIndex++;
-  console.log("questionIndex: ", questionIndex)
   renderQuestion();
 } else {
   score = timerCount;
@@ -190,6 +194,8 @@ function manageScores () {
   if (retrievedScores !== null) { 
   var scoreArray = JSON.parse(retrievedScores);
   }
+  console.log("scoreArray: ", scoreArray);
+  console.log("score: ", score);
 
   // if new initials and score add to the current storage array 
   if (initials !== "" && score !== 0) {
@@ -199,7 +205,8 @@ function manageScores () {
     //add the inital score object to an array
     scoreArray.unshift(userInitScore);
 
-   // Put the array into storage
+   // Put the array into storage but first clear the previous content
+    localStorage.clear();
     localStorage.setItem('scores', JSON.stringify(scoreArray));
 }
   //populate a high score list on the score-container using append
@@ -209,14 +216,16 @@ function manageScores () {
        node.appendChild(textnode);
        document.getElementById("high-score-list").appendChild(node);
   }
+
+  //Clears the variables so it won't load more entries just by switching cards but it still does
+  initials = "";
+  score = 0;
 }
 
   //This function responds to clicking the clear button, it clears local memory
   function clearScores () {
-    initials = "";
-    score = 0;
     localStorage.clear();
-    //not working the way I'd like
+    //reloads page so not staring at an empty list
     location.reload();
   }
   
@@ -234,7 +243,9 @@ clearButton.addEventListener("click", clearScores);
 highScore.addEventListener("click", showScores);
 
 //Event listener for return button
-returnButton.addEventListener("click", init);
+returnButton.addEventListener("click", function() {
+  location.reload();
+});
 
 achoice.addEventListener("click", function() {
   response = "a";
