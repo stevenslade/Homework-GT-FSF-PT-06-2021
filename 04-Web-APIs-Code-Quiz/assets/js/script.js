@@ -40,7 +40,7 @@ var questionIndex;
 var quizQuestions = [
     {
       question: "In Javascript, what property do you use to determine the number of elements in an array?",
-      answers: [".elements", ".ArrayElements", "Correct - .length", ".arguments"],
+      answers: [".elements", ".ArrayElements", ".length", ".arguments"],
       correctAnswer: "c"
     },
     {
