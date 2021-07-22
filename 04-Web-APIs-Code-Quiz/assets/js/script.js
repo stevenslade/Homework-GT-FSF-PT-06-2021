@@ -24,6 +24,11 @@ var clearButton = document.querySelector("#clear-button");
 var timer;
 var timerCount;
 
+//these variables are for the correct message to be displyed after a question is answered
+var correctMessageTimer;
+var correctMessageTimerCount;
+
+
 var initials = "";
 var score = 0;
 
@@ -117,6 +122,10 @@ function renderQuestion(){
 function checkAnswer() {
   if(response !== correctAnswer) {
     timerCount -= 10;
+  } else {
+    correctMessage.style.display ="block";
+    correctMessageTimerCount = 2;
+    startCorrectMessageTimer();
   }
   if (questionIndex < quizQuestions.length -1) {
   questionIndex++;
@@ -135,16 +144,28 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       timerElement.textContent = "Timer: " + timerCount;
-      //this needs to be if timer >0 and all questions answered save time, clear interval, win game
-      if (timerCount >= 0 ) {
-        
-      }
+    
       // Tests if time has run out
       if (timerCount === 0) {
         // Clears interval
         score = timerCount;
         clearInterval(timer);
         showSummary()
+      }
+    }, 1000);
+  }
+
+  //timer for correct message
+  function startCorrectMessageTimer() {
+    // Sets timer
+    correctMessageTimer = setInterval(function() {
+      correctMessageTimerCount--;
+    
+      // Tests if time has run out
+      if (correctMessageTimerCount === 0) {
+        // Clears interval
+        correctMessage.style.display ="none";
+        clearInterval(correctMessageTimer);
       }
     }, 1000);
   }
