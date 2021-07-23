@@ -228,7 +228,9 @@ function manageScores () {
     localStorage.clear();
     localStorage.setItem('scores', JSON.stringify(scoreArray));
 }
-  //populate a high score list on the score-container using append
+  // populate a high score list on the score-container using append
+  // need to sort the array according to scoreArray[i].score
+  // But I can't think of a good way to do this at the moment
   for ( var i = 0; i < scoreArray.length; i++){
        var node = document.createElement("LI");
        var textnode = document.createTextNode(scoreArray[i].initials + "           " + scoreArray[i].score);
@@ -244,7 +246,8 @@ function manageScores () {
   //This function responds to clicking the clear button, it clears local memory
   function clearScores () {
     localStorage.clear();
-    //reloads page so not staring at an empty list
+    //reloads page so not staring at an empty list and also resets the HTML so
+    //any items appeneded are not still there after a clear
     location.reload();
   }
   
