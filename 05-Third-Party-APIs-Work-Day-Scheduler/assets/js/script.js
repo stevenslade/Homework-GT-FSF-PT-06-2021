@@ -13,6 +13,25 @@ console.log(currentHour);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //this is reference content for displaying continually updating time
 
 var datetime = null,
