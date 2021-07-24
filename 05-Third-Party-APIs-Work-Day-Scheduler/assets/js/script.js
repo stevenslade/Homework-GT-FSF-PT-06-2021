@@ -2,6 +2,13 @@
 var today = moment ().format("dddd, MMMM Do YYYY");
 $("#currentDay").text(today);
 
+//get the current hour to set attribute of rows
+var currentHour = moment().hour();
+
+//use this to check current time- REMOVE from production version
+console.log(currentHour);
+
+
 
 
 
