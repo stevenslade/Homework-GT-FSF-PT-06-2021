@@ -4,13 +4,12 @@ body {
   line-height: 1;
 }
 
-textarea {
+.activitytext {
   background: transparent;
-  border: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
 }
 
 .jumbotron {
@@ -58,7 +57,7 @@ textarea {
 }
 
 .saveBtn {
-  border-left: 1px solid black;
+  border: 2px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
