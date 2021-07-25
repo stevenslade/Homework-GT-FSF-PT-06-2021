@@ -1,8 +1,4 @@
-//declare variable for todays date and set to currentDay id 
-//var today = moment ().format("dddd, MMMM Do YYYY");
-//$("#currentDay").text(today);
-
-//this is displays continually updating time
+//this displays continually updating time
 
 var datetime = null,
         date = null;
@@ -27,29 +23,16 @@ var currentHour = moment().hour();
 //setting the time color
 var activityBlocks = $('.activitytext');
 
-// make a variable of the text value input into the activitytext
-//this is a dead end
-//var activityEl = "HelloWorld";
-//console.log (activityEl);
-
 //Make a click event using relationships to work on all
 // the text areas
 $(".saveBtn").on("click", function() {
-    console.log(this);
     var text = $(this).siblings(".activitytext").val();
-    console.log("text:", text);
     var forTime = $(this).parent().attr("id");
-    console.log("forTime: ", forTime);
 
     //save to local storage
     localStorage.setItem(forTime, text);
 
 })
-
-//try without an array first just with variable
-//This can be REMOVED for production
-// var ninehour = $('#9am');
-// ninehour.addClass("past");
 
 // Create a loop to iterate over the array of activityBlocks
 function checkTimeBlockColor () {
@@ -70,16 +53,24 @@ function checkTimeBlockColor () {
   }
 }
 
-//need a function to push from local storage to my activitytext
+// need a function to push from local storage to my activitytext
+// I can't figure out how to do this in a loop since all my local storage
+// is saved as a key and value not an object, need to revisit how I am saving
+
 function retrieveActivityText() {
-
-
+ $("#9am .activitytext").val(localStorage.getItem("9am"));
+ $("#10am .activitytext").val(localStorage.getItem("10am"));
+ $("#11am .activitytext").val(localStorage.getItem("11am"));
+ $("#12pm .activitytext").val(localStorage.getItem("12pm"));
+ $("#1pm .activitytext").val(localStorage.getItem("1pm"));
+ $("#2pm .activitytext").val(localStorage.getItem("2pm"));
+ $("#3pm .activitytext").val(localStorage.getItem("3pm"));
+ $("#4pm .activitytext").val(localStorage.getItem("4pm"));
+ $("#5pm .activitytext").val(localStorage.getItem("5pm"));
 }
 
-
-
-
 //need an init function that calls the local storage push on page load
+// also include the timeblock color change function
 function init () {
     retrieveActivityText();
     checkTimeBlockColor ();
@@ -89,26 +80,5 @@ function init () {
 init ();
 
 
-// This is all reference content
 
-// TODO: 2. What day of the week will 1/1/2022 be?
-var weekDay = moment("1-1-2022", "M-D-YYY").format("ddd MMM Do, YYYY");
-$("#2a").text(weekDay);
-
-// TODO: 3. Out of 365, what day of the year is today?
-var dayYear = moment()
-//var now = moment();
-//$("#3a").moment().dayOfYear();
-
-// TODO: 4. What is the current time in the format: hours:minutes:seconds
-var time = moment().format("hh:mm:ss");
-$("#4a").text(time);
-
-// TODO: 5. What is the current Unix timestamp?
-var unix = moment().format("X");
-$("#5a").text(unix);
-
-// TODO: 6. Parse the following Unix timestamp, 1318781876, and convert into any time/date format.
-var unixFormat = moment.unix(1318781876).format("MMM Do, YYY, hh:mm:ss");
-$("#6a").text(unixFormat);
 
