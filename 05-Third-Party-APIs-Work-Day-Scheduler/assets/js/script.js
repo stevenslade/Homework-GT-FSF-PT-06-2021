@@ -1,6 +1,24 @@
 //declare variable for todays date and set to currentDay id 
-var today = moment ().format("dddd, MMMM Do YYYY");
-$("#currentDay").text(today);
+//var today = moment ().format("dddd, MMMM Do YYYY");
+//$("#currentDay").text(today);
+
+//this is displays continually updating time
+
+var datetime = null,
+        date = null;
+
+var update = function () {
+    date = moment(new Date())
+    datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
+    checkTimeBlockColor ();
+};
+
+$(document).ready(function(){
+    datetime = $('#currentDay')
+    update();
+    setInterval(update, 1000);
+});
+
 
 //get the current hour to set attribute of rows
 var currentHour = moment().hour();
@@ -53,9 +71,9 @@ function checkTimeBlockColor () {
 }
 
 //need a function to push from local storage to my activitytext
-function retreiveActivityText() {
+function retrieveActivityText() {
 
-    
+
 }
 
 
@@ -63,38 +81,12 @@ function retreiveActivityText() {
 
 //need an init function that calls the local storage push on page load
 function init () {
-    retreiveActivityText();
+    retrieveActivityText();
     checkTimeBlockColor ();
 }
 
 // Calls init function on page load
 init ();
-
-
-
-
-
-
-
-
-
-//this is reference content for displaying continually updating time
-
-var datetime = null,
-        date = null;
-
-var update = function () {
-    date = moment(new Date())
-    datetime.html(date.format('dddd, MMMM Do YYYY, h:mm:ss a'));
-};
-
-$(document).ready(function(){
-    datetime = $('#datetime')
-    update();
-    setInterval(update, 1000);
-});
-
-
 
 
 // This is all reference content
