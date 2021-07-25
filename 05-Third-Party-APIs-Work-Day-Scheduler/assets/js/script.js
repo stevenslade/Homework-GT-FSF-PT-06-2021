@@ -5,14 +5,28 @@ $("#currentDay").text(today);
 //get the current hour to set attribute of rows
 var currentHour = moment().hour();
 
-//use this to check current time- REMOVE from production version
-console.log("currenthour:", currentHour);
-
+// make an array of all activitytext to iterate across for
+//setting the time color
 var activityBlocks = $('.activitytext');
 
+// make a variable of the text value input into the activitytext
+//this is a dead end
+//var activityEl = "HelloWorld";
+//console.log (activityEl);
 
+//Make a click event using relationships to work on all
+// the text areas
+$(".saveBtn").on("click", function() {
+    console.log(this);
+    var text = $(this).siblings(".activitytext").val();
+    console.log("text:", text);
+    var forTime = $(this).parent().attr("id");
+    console.log("forTime: ", forTime);
 
+    //save to local storage
+    localStorage.setItem(forTime, text);
 
+})
 
 //try without an array first just with variable
 //This can be REMOVED for production
@@ -36,6 +50,13 @@ for(var i=0; i < activityBlocks.length; i++) {
         $(currentBlock).addClass("future");
     }
 }
+
+//need a function to push from local storage to my activitytext
+
+
+//need an init function that calls the local storage push on page load
+
+
 
 
 
