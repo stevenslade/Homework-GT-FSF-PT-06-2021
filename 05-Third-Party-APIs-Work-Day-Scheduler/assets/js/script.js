@@ -6,24 +6,36 @@ $("#currentDay").text(today);
 var currentHour = moment().hour();
 
 //use this to check current time- REMOVE from production version
-console.log(currentHour);
+console.log("currenthour:", currentHour);
+
+var activityBlocks = $('.activitytext');
 
 
 
 
 
+//try without an array first just with variable
+//This can be REMOVED for production
+// var ninehour = $('#9am');
+// ninehour.addClass("past");
 
+// Create a loop to iterate over the array of activityBlocks
 
+for(var i=0; i < activityBlocks.length; i++) {
+    var currentBlock = activityBlocks[i];
+    var compareTime = (i+9);
 
-
-
-
-
-
-
-
-
-
+    if (compareTime < currentHour){
+        //addpast class
+        $(currentBlock).addClass("past");
+    } else if (compareTime === currentHour) {
+        //addpresent class
+        $(currentBlock).addClass("present");
+    } else {
+        //addfuture class
+        $(currentBlock).addClass("future");
+    }
+}
 
 
 
