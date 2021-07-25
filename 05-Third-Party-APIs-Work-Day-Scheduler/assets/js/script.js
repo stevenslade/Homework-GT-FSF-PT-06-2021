@@ -34,8 +34,8 @@ $(".saveBtn").on("click", function() {
 // ninehour.addClass("past");
 
 // Create a loop to iterate over the array of activityBlocks
-
-for(var i=0; i < activityBlocks.length; i++) {
+function checkTimeBlockColor () {
+  for(var i=0; i < activityBlocks.length; i++) {
     var currentBlock = activityBlocks[i];
     var compareTime = (i+9);
 
@@ -49,13 +49,26 @@ for(var i=0; i < activityBlocks.length; i++) {
         //addfuture class
         $(currentBlock).addClass("future");
     }
+  }
 }
 
 //need a function to push from local storage to my activitytext
+function retreiveActivityText() {
+
+    
+}
+
+
 
 
 //need an init function that calls the local storage push on page load
+function init () {
+    retreiveActivityText();
+    checkTimeBlockColor ();
+}
 
+// Calls init function on page load
+init ();
 
 
 
