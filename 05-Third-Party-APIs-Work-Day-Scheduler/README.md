@@ -1,4 +1,4 @@
-## Homework assignment 05 Third Party APIs
+## 05 Third Party APIs
 
 Assignment for fifth week, Third Party APIs: Work Day Scheduler
 
