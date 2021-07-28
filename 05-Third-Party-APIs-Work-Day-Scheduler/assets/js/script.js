@@ -55,7 +55,7 @@ function checkTimeBlockColor () {
 
 // need a function to push from local storage to my activitytext
 // I can't figure out how to do this in a loop since all my local storage
-// is saved as a key and value not an object, need to revisit how I am saving
+// is saved as a key and value not an array, need to revisit how I am saving
 
 function retrieveActivityText() {
  $("#9am .activitytext").val(localStorage.getItem("9am"));
