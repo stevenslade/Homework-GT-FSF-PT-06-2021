@@ -1,18 +1,16 @@
 var userFormEl = document.querySelector('#user-form');
 var languageButtonsEl = document.querySelector('#language-buttons');
-var nameInputEl = document.querySelector('#username');
+var nameInputEl = document.querySelector('#cityname');
 var repoContainerEl = document.querySelector('#repos-container');
 var repoSearchTerm = document.querySelector('#repo-search-term');
-var datetime = document.querySelector('#currentDay');
-var APIkey = "18478b8e8991a96f7973ebca1c12f563";
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
-  var username = nameInputEl.value.trim();
+  var cityname = nameInputEl.value.trim();
 
-  if (username) {
-    getUserRepos(username);
+  if (cityname) {
+    getUserRepos(cityname);
 
     repoContainerEl.textContent = '';
     nameInputEl.value = '';
@@ -105,11 +103,63 @@ var displayRepos = function (repos, searchTerm) {
   }
 };
 
-
-  var date = moment(new Date())
-  datetime.textContent = (date.format('dddd, MMMM Do YYYY'));
-  console.log(datetime);
-
-
 userFormEl.addEventListener('submit', formSubmitHandler);
-languageButtonsEl.addEventListener('click', buttonClickHandler);
+//languageButtonsEl.addEventListener('click', buttonClickHandler);
+
+//Content I added 
+
+var datetime = document.querySelector('#currentDay');
+
+var APIkey = "18478b8e8991a96f7973ebca1c12f563";
+
+var date = moment(new Date())
+datetime.textContent = (date.format('dddd, MMMM Do YYYY'));
+console.log(datetime);
+
+
+
+// Start of Trey's tutorial script
+
+var historyEl = document.getElementById("history");
+var searchInputEl = 
+
+
+function init() {
+  displaySavedLocations();
+}
+
+function displaySavedLocations() {
+  var locations = localStorage.getItem("savedLocations");
+  if (locations) {
+    var parsedLocations = JSON.parse(locations);
+    parsedLocations.forEach(function (item) {
+      var listItem = document.createElement('li');
+      var content = `<button data-location ="${item}">${item}</button>`;
+      listItem.innerHTML = content;
+      historyEl.appendChild(listItem);
+  }); 
+  }
+}
+
+function updateContentPane (evt){
+  var buttonClicked = evt.target;
+  var location = buttonClicked.getAttribute("data-location");
+}
+
+function getLocation(evt) {
+  evt.preventDefault;
+  var location = serachInputEl.value;
+}
+
+function setEventListeners(){
+  historyEl.addEventListener('click', updateContentPane);
+  searchInputEl.addEventListner("click", getLocation);
+}
+
+function init() {
+  setEventListeners();
+  displaySavedLocations();
+}
+
+//calls init on page load
+init();

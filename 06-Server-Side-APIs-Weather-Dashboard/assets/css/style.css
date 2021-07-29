@@ -30,8 +30,12 @@ h5,
 h6 {
   font-weight: 700;
   margin: 0;
-  color: var(--primary);
+  color: var(--dark);
   line-height: 1.25;
+}
+
+#currentDay {
+  color: white;
 }
 
 main {
@@ -100,10 +104,12 @@ p {
   text-align: center;
 }
 
-/* Not needed at the moment remove before released */
-/* .header p {
-  
-} */
+.currentCity {
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+  padding: 10px;
+}
 
 .app-title {
   font-size: 3rem;
@@ -113,6 +119,14 @@ p {
   display: inline-block;
   /* border-radius: var(--border-radius);
   box-shadow: 6px 5px var(--light-dark); */
+}
+
+.weatherDay {
+  background-color:blue;
+  color: white;
+  margin:1%
+  /* This border raius is cancelling my margin */
+  /* border-radius: 1px; */
 }
 
 .list-group {
