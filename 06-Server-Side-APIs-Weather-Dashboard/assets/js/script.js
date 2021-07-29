@@ -1,3 +1,5 @@
+// Reference Content for commands
+
 // var userFormEl = document.querySelector('#user-form');
 // var languageButtonsEl = document.querySelector('#language-buttons');
 // var nameInputEl = document.querySelector('#cityname');
@@ -112,7 +114,7 @@
 
 var datetime = document.querySelector('#currentDay');
 
-var APIkey = "18478b8e8991a96f7973ebca1c12f563";
+var APIKey = "18478b8e8991a96f7973ebca1c12f563";
 
 var date = moment(new Date())
 datetime.textContent = (date.format('dddd, MMMM Do YYYY'));
@@ -125,8 +127,52 @@ var searchInputBtn = document.getElementById("searchBtn");
 
 var parsedLocations = [];
 
-// Next Step
 // Send an API request to the URL
+
+function getApi() {
+  // need a location variable I can pass one in to the function
+  // for now I'm going to just make a city variable
+
+  var city = "Detroit";
+
+  //need a request Url
+  var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
+
+
+  fetch(queryUrl)
+  .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data)
+      console.log("City: ", data.name);
+      console.log("Temp: ", data.main.temp);
+      console.log("Wind: ", data.wind.speed);
+      console.log("Humidity: ", data.main.humidity);
+      console.log("UV Index: ", data.wind.speed);
+      console.log("Description: ", data.weather[0].description);
+
+      //Just console log the returned data right now
+
+      //Loop over the data to generate a table, each table row will have a link to the repo url
+      // for (var i = 0; i < data.length; i++) {
+        // Creating elements, tablerow, tabledata, and anchor
+        // var createTableRow = document.createElement('tr');
+        // var tableData = document.createElement('td');
+        // var link = document.createElement('a');
+
+        // Setting the text of link and the href of the link
+        // link.textContent = data[i].html_url;
+        // link.href = data[i].html_url;
+
+        // Appending the link to the tabledata and then appending the tabledata to the tablerow
+        // The tablerow then gets appended to the tablebody
+       // tableData.appendChild(link);
+       // createTableRow.appendChild(tableData);
+       //  tableBody.appendChild(createTableRow);
+      //}
+    });
+  }
 
 
 //This saves a new location to the local storage and then reruns the display saved locations function
@@ -170,9 +216,13 @@ function getLocation(evt) {
   if (parsedLocations.includes(location) === false && location !== ""){
   parsedLocations.push(location);
   console.log("parsedLocations: ", parsedLocations);
+
   //call the function to save my updated parsedLocations
   saveNewLocation();
   }
+  // Call the fetch Function here aftering getting the location
+  // and hand the function the location
+  getApi();
 }
 
 function setEventListeners(){
