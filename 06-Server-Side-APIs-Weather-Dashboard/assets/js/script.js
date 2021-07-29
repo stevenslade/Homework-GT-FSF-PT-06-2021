@@ -1,110 +1,112 @@
-var userFormEl = document.querySelector('#user-form');
-var languageButtonsEl = document.querySelector('#language-buttons');
-var nameInputEl = document.querySelector('#cityname');
-var repoContainerEl = document.querySelector('#repos-container');
-var repoSearchTerm = document.querySelector('#repo-search-term');
+// var userFormEl = document.querySelector('#user-form');
+// var languageButtonsEl = document.querySelector('#language-buttons');
+// var nameInputEl = document.querySelector('#cityname');
+// var repoContainerEl = document.querySelector('#repos-container');
+// var repoSearchTerm = document.querySelector('#repo-search-term');
 
-var formSubmitHandler = function (event) {
-  event.preventDefault();
+// var formSubmitHandler = function (event) {
+//   event.preventDefault();
 
-  var cityname = nameInputEl.value.trim();
+//   var cityname = nameInputEl.value.trim();
 
-  if (cityname) {
-    getUserRepos(cityname);
+//   if (cityname) {
+//     getUserRepos(cityname);
 
-    repoContainerEl.textContent = '';
-    nameInputEl.value = '';
-  } else {
-    alert('Please enter a valid City Name');
-  }
-};
+//     repoContainerEl.textContent = '';
+//     nameInputEl.value = '';
+//   } else {
+//     alert('Please enter a valid City Name');
+//   }
+// };
 
-var buttonClickHandler = function (event) {
+// var buttonClickHandler = function (event) {
 
-  var language = event.target.getAttribute('data-language');
-  if (language) {
-    getFeaturedRepos(language);
+//   var language = event.target.getAttribute('data-language');
+//   if (language) {
+//     getFeaturedRepos(language);
 
-    repoContainerEl.textContent = '';
-  }
-};
+//     repoContainerEl.textContent = '';
+//   }
+// };
 
-var getUserRepos = function (user) {
-  var apiUrl = 'https://api.github.com/users/' + user + '/repos';
+// var getUserRepos = function (user) {
+//   var apiUrl = 'https://api.github.com/users/' + user + '/repos';
 
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-          displayRepos(data, user);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect to GitHub');
-    });
-};
+//   fetch(apiUrl)
+//     .then(function (response) {
+//       if (response.ok) {
+//         console.log(response);
+//         response.json().then(function (data) {
+//           console.log(data);
+//           displayRepos(data, user);
+//         });
+//       } else {
+//         alert('Error: ' + response.statusText);
+//       }
+//     })
+//     .catch(function (error) {
+//       alert('Unable to connect to GitHub');
+//     });
+// };
 
-var getFeaturedRepos = function (language) {
-  // What are the query parameters doing here?
-  // TODO: Write your answer here
+// var getFeaturedRepos = function (language) {
+//   // What are the query parameters doing here?
+//   // TODO: Write your answer here
 
-  // 
+//   // 
 
-  var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
+//   var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
 
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        displayRepos(data.items, language);
-      });
-    } else {
-      alert('Error: ' + response.statusText);
-    }
-  });
-};
+//   fetch(apiUrl).then(function (response) {
+//     if (response.ok) {
+//       response.json().then(function (data) {
+//         displayRepos(data.items, language);
+//       });
+//     } else {
+//       alert('Error: ' + response.statusText);
+//     }
+//   });
+// };
 
-var displayRepos = function (repos, searchTerm) {
-  if (repos.length === 0) {
-    repoContainerEl.textContent = 'No repositories found.';
-    return;
-  }
+// var displayRepos = function (repos, searchTerm) {
+//   if (repos.length === 0) {
+//     repoContainerEl.textContent = 'No repositories found.';
+//     return;
+//   }
 
-  repoSearchTerm.textContent = searchTerm;
+//   repoSearchTerm.textContent = searchTerm;
 
-  for (var i = 0; i < repos.length; i++) {
-    var repoName = repos[i].owner.login + '/' + repos[i].name;
+//   for (var i = 0; i < repos.length; i++) {
+//     var repoName = repos[i].owner.login + '/' + repos[i].name;
 
-    var repoEl = document.createElement('div');
-    repoEl.classList = 'list-item flex-row justify-space-between align-center';
+//     var repoEl = document.createElement('div');
+//     repoEl.classList = 'list-item flex-row justify-space-between align-center';
 
-    var titleEl = document.createElement('span');
-    titleEl.textContent = repoName;
+//     var titleEl = document.createElement('span');
+//     titleEl.textContent = repoName;
 
-    repoEl.appendChild(titleEl);
+//     repoEl.appendChild(titleEl);
 
-    var statusEl = document.createElement('span');
-    statusEl.classList = 'flex-row align-center';
+//     var statusEl = document.createElement('span');
+//     statusEl.classList = 'flex-row align-center';
 
-    if (repos[i].open_issues_count > 0) {
-      statusEl.innerHTML =
-        "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
-    } else {
-      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-    }
+//     if (repos[i].open_issues_count > 0) {
+//       statusEl.innerHTML =
+//         "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
+//     } else {
+//       statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+//     }
 
-    repoEl.appendChild(statusEl);
+//     repoEl.appendChild(statusEl);
 
-    repoContainerEl.appendChild(repoEl);
-  }
-};
+//     repoContainerEl.appendChild(repoEl);
+//   }
+// };
 
-userFormEl.addEventListener('submit', formSubmitHandler);
-//languageButtonsEl.addEventListener('click', buttonClickHandler);
+// userFormEl.addEventListener('submit', formSubmitHandler);
+// //languageButtonsEl.addEventListener('click', buttonClickHandler);
+
+
 
 //Content I added 
 
@@ -114,24 +116,37 @@ var APIkey = "18478b8e8991a96f7973ebca1c12f563";
 
 var date = moment(new Date())
 datetime.textContent = (date.format('dddd, MMMM Do YYYY'));
-console.log(datetime);
-
-
 
 // Start of Trey's tutorial script
 
 var historyEl = document.getElementById("history");
-var searchInputEl = 
+var searchInputEl = document.getElementById("cityname");
+var searchInputBtn = document.getElementById("searchBtn");
+
+var parsedLocations = [];
+
+// Next Step
+// Send an API request to the URL
 
 
-function init() {
+//This saves a new location to the local storage and then reruns the display saved locations function
+function saveNewLocation() {
+  localStorage.setItem("savedLocations", JSON.stringify(parsedLocations));
   displaySavedLocations();
 }
+
 
 function displaySavedLocations() {
   var locations = localStorage.getItem("savedLocations");
   if (locations) {
-    var parsedLocations = JSON.parse(locations);
+    parsedLocations = JSON.parse(locations);
+    console.log(parsedLocations);
+
+    //need to clear any existing html elements
+    while (historyEl.firstChild) {
+      historyEl.removeChild(historyEl.firstChild);
+    }
+
     parsedLocations.forEach(function (item) {
       var listItem = document.createElement('li');
       var content = `<button data-location ="${item}">${item}</button>`;
@@ -143,17 +158,26 @@ function displaySavedLocations() {
 
 function updateContentPane (evt){
   var buttonClicked = evt.target;
-  var location = buttonClicked.getAttribute("data-location");
+  //var location = buttonClicked.getAttribute("data-location");
 }
 
 function getLocation(evt) {
-  evt.preventDefault;
-  var location = serachInputEl.value;
+  evt.preventDefault();
+  var location = searchInputEl.value;
+  console.log(location);
+
+  //adding the new location to parsedLocations
+  if (parsedLocations.includes(location) === false && location !== ""){
+  parsedLocations.push(location);
+  console.log("parsedLocations: ", parsedLocations);
+  //call the function to save my updated parsedLocations
+  saveNewLocation();
+  }
 }
 
 function setEventListeners(){
-  historyEl.addEventListener('click', updateContentPane);
-  searchInputEl.addEventListner("click", getLocation);
+  historyEl.addEventListener("click", updateContentPane);
+  searchInputBtn.addEventListener("click", getLocation);
 }
 
 function init() {
