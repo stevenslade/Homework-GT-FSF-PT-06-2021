@@ -23,7 +23,11 @@ var parsedLocations = [];
 function getFiveDayApi(city) {
 
   //need a request Url 
-  var queryFiveDayUrl = "http://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial" + "&appid=" + APIKey;
+  var queryFiveDayUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&units=imperial" + "&appid=" + APIKey;
+  
+  
+  // The answer to your bad call is here in the cnt modifier 
+  // api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&cnt=7&appid={API key}
 
   // This request is for  
   fetch(queryFiveDayUrl)
@@ -32,7 +36,14 @@ function getFiveDayApi(city) {
     })
     .then(function (data) {
       console.log(data)
-      // console.log("City: ", data.name);
+      //console.log("data.list[0]: ", data.list[0]);
+      
+      //console.log("data.list[0].main.temp: ", data.list[0].main.temp);
+      //console.log("data.list[0].main.humidity: ", data.list[0].main.humidity);
+
+
+      // need to find the forecast date using moment
+
       // console.log("Temp: ", data.main.temp);
       // console.log("Wind: ", data.wind.speed);
       // console.log("Humidity: ", data.main.humidity);
@@ -63,13 +74,13 @@ function getApi(city) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
-      console.log("City: ", data.name);
-      console.log("Temp: ", data.main.temp);
-      console.log("Wind: ", data.wind.speed);
-      console.log("Humidity: ", data.main.humidity);
-      console.log("UV Index: ", data.wind.speed);
-      console.log("Description: ", data.weather[0].description);
+      // console.log(data)
+      // console.log("City: ", data.name);
+      // console.log("Temp: ", data.main.temp);
+      // console.log("Wind: ", data.wind.speed);
+      // console.log("Humidity: ", data.main.humidity);
+      // console.log("UV Index: ", data.wind.speed);
+      // console.log("Description: ", data.weather[0].description);
 
       // the query is successful I have the values I need to set the today card
       // you don't need variable to use textContent if you have ids
@@ -93,7 +104,7 @@ function displaySavedLocations() {
   var locations = localStorage.getItem("savedLocations");
   if (locations) {
     parsedLocations = JSON.parse(locations);
-    console.log(parsedLocations);
+    //console.log(parsedLocations);
 
     //need to clear any existing html elements
     while (historyEl.firstChild) {
@@ -119,9 +130,11 @@ function displaySavedLocations() {
 function updateContentPane (evt){
   var buttonClicked = evt.target;
   var location = buttonClicked.getAttribute("data-location");
-  console.log("location from updateContentPane: ", location);
+  //console.log("location from updateContentPane: ", location);
   // call the fetch function with the location from the attribute
   getApi(location);
+  // call the five day fetch function with the location from the attribute
+  getFiveDayApi(location);
 }
 
 function getLocation(evt) {
