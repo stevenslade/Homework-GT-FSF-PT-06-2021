@@ -20,22 +20,19 @@ var searchInputBtn = document.getElementById("searchBtn");
 var parsedLocations = [];
 
 //Need an API pull to get the 5 day forecast using the same key and same city
-function getFiveDayApi(city) {
+function getFiveDayApi(lat, lon) {
 
-  //need a request Url 
-  var queryFiveDayUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&units=imperial" + "&appid=" + APIKey;
-  
-  
-  // The answer to your bad call is here in the cnt modifier 
-  // api.openweathermap.org/data/2.5/forecast/daily?q=London&units=metric&cnt=7&appid={API key}
+  //The five day API request is not working, try the one call request
+
+  var oneCallQueryUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=" + APIKey;
 
   // This request is for  
-  fetch(queryFiveDayUrl)
+  fetch(oneCallQueryUrl)
   .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      console.log(data)
+      console.log(data);
       //console.log("data.list[0]: ", data.list[0]);
       
       //console.log("data.list[0].main.temp: ", data.list[0].main.temp);
@@ -47,12 +44,11 @@ function getFiveDayApi(city) {
       // console.log("Temp: ", data.main.temp);
       // console.log("Wind: ", data.wind.speed);
       // console.log("Humidity: ", data.main.humidity);
-      // console.log("UV Index: ", data.wind.speed);
       // console.log("Description: ", data.weather[0].description);
 
       // the query is successful I have the values I need to set the today card
       // you don't need variable to use textContent if you have ids
-      // searchCityDate.textContent = data.name + "   (" + todayDate +")";
+      searchUVindex.textContent = "UV Index: " + data.current.uvi;
       // searchTemp.textContent =  "Temp (F): " + data.main.temp;
       // searchWind.textContent = "Wind (mph): " + data.wind.speed;
       // searchHumidity.textContent = "Humidity (%): " + data.main.humidity;
@@ -74,21 +70,20 @@ function getApi(city) {
       return response.json();
     })
     .then(function (data) {
-      // console.log(data)
-      // console.log("City: ", data.name);
-      // console.log("Temp: ", data.main.temp);
-      // console.log("Wind: ", data.wind.speed);
-      // console.log("Humidity: ", data.main.humidity);
-      // console.log("UV Index: ", data.wind.speed);
-      // console.log("Description: ", data.weather[0].description);
-
       // the query is successful I have the values I need to set the today card
       // you don't need variable to use textContent if you have ids
       searchCityDate.textContent = data.name + "   (" + todayDate +")";
       searchTemp.textContent =  "Temp (F): " + data.main.temp;
       searchWind.textContent = "Wind (mph): " + data.wind.speed;
       searchHumidity.textContent = "Humidity (%): " + data.main.humidity;
-      searchDescription.textContent = "Description: " + data.weather[0].description;    
+      searchDescription.textContent = "Description: " + data.weather[0].description;      
+
+      //NEED TO MAKE THESE ACTUAL VARIABLE PULLS FROM THE FETCH DATA
+      var lat = data.coord.lat;
+      var lon = data.coord.lon;
+
+      getFiveDayApi(lat, lon);      
+
     });
   }
 
@@ -133,19 +128,15 @@ function updateContentPane (evt){
   //console.log("location from updateContentPane: ", location);
   // call the fetch function with the location from the attribute
   getApi(location);
-  // call the five day fetch function with the location from the attribute
-  getFiveDayApi(location);
 }
 
 function getLocation(evt) {
   evt.preventDefault();
   var location = searchInputEl.value;
-  console.log(location);
 
   //adding the new location to parsedLocations
   if (parsedLocations.includes(location) === false && location !== ""){
   parsedLocations.push(location);
-  console.log("parsedLocations: ", parsedLocations);
 
   //call the function to save my updated parsedLocations
   saveNewLocation();
