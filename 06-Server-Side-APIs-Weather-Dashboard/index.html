@@ -33,22 +33,23 @@
 
       <div class="card">
         <h3 class="card-header">SEARCHED WEATHER HISTORY</h3>
-        <div class="list-group">
-          <ul id="history">
+        <div>
+          <ul id="history" class="list-group">
           </ul>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-md-9">
-      <h2 class="subtitle">Showing Weather for: <span id="repo-search-term"></span></h2>
+      <h2 class="subtitle">Showing Weather for:</h2>
        <div class ="currentCity">
-         <p>No City Selected</p> 
-         <p>(3/30/21)</p>
-         <p>Temp:</p>
-         <p>Wind:</p>
-         <p>Humidity:</p>
-         <p>UV Index:</p>
+         <h4 id="searchCityDate">No City Selected</h4> 
+         <p id="searchTemp">Temp:</p>
+         <p id="searchWind">Wind:</p>
+         <p id="searchHumidity">Humidity:</p>
+         <p id="searchDescription">Description:</p>
+         <!-- UVI has been depracated from open weather
+         <p id="searchUVindex">UV Index:</p> -->
        </div>
 
       <div class="col-12"><h4>5-Day Forecast:</h4></div>

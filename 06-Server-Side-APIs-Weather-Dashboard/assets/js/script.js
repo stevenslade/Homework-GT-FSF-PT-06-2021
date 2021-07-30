@@ -119,7 +119,10 @@ var APIKey = "18478b8e8991a96f7973ebca1c12f563";
 var date = moment(new Date())
 datetime.textContent = (date.format('dddd, MMMM Do YYYY'));
 
-// Start of Trey's tutorial script
+//Need the date in MM/DD/YY for the weather card
+var todayDate = (date.format('MM/D/YY'));
+
+// Start of T script
 
 var historyEl = document.getElementById("history");
 var searchInputEl = document.getElementById("cityname");
@@ -129,16 +132,12 @@ var parsedLocations = [];
 
 // Send an API request to the URL
 
-function getApi() {
-  // need a location variable I can pass one in to the function
-  // for now I'm going to just make a city variable
+function getApi(city) {
 
-  var city = "Detroit";
-
-  //need a request Url
+  //need a request Url 
   var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
 
-
+  // This request is for  
   fetch(queryUrl)
   .then(function (response) {
       return response.json();
@@ -152,25 +151,13 @@ function getApi() {
       console.log("UV Index: ", data.wind.speed);
       console.log("Description: ", data.weather[0].description);
 
-      //Just console log the returned data right now
-
-      //Loop over the data to generate a table, each table row will have a link to the repo url
-      // for (var i = 0; i < data.length; i++) {
-        // Creating elements, tablerow, tabledata, and anchor
-        // var createTableRow = document.createElement('tr');
-        // var tableData = document.createElement('td');
-        // var link = document.createElement('a');
-
-        // Setting the text of link and the href of the link
-        // link.textContent = data[i].html_url;
-        // link.href = data[i].html_url;
-
-        // Appending the link to the tabledata and then appending the tabledata to the tablerow
-        // The tablerow then gets appended to the tablebody
-       // tableData.appendChild(link);
-       // createTableRow.appendChild(tableData);
-       //  tableBody.appendChild(createTableRow);
-      //}
+      // the query is successful I have the values I need to set the today card
+      // you don't need variable to use textContent if you have ids
+      searchCityDate.textContent = data.name + "   (" + todayDate +")";
+      searchTemp.textContent =  "Temp (F): " + data.main.temp;
+      searchWind.textContent = "Wind (mph): " + data.wind.speed;
+      searchHumidity.textContent = "Humidity (%): " + data.main.humidity;
+      searchDescription.textContent = "Description: " + data.weather[0].description;    
     });
   }
 
@@ -193,6 +180,12 @@ function displaySavedLocations() {
       historyEl.removeChild(historyEl.firstChild);
     }
 
+    //this function runs a for each loop over each city in the parsedlocations Array
+    //for each city it makes a list element
+    //it creates content in the form of a button with a data location where
+    //the data attribute is the item, the city name
+    //then the inner html of the listitem is set to the button/attribute
+
     parsedLocations.forEach(function (item) {
       var listItem = document.createElement('li');
       var content = `<button data-location ="${item}">${item}</button>`;
@@ -204,7 +197,10 @@ function displaySavedLocations() {
 
 function updateContentPane (evt){
   var buttonClicked = evt.target;
-  //var location = buttonClicked.getAttribute("data-location");
+  var location = buttonClicked.getAttribute("data-location");
+  console.log("location from updateContentPane: ", location);
+  // call the fetch function with the location from the attribute
+  getApi(location);
 }
 
 function getLocation(evt) {
@@ -222,7 +218,7 @@ function getLocation(evt) {
   }
   // Call the fetch Function here aftering getting the location
   // and hand the function the location
-  getApi();
+  getApi(location);
 }
 
 function setEventListeners(){

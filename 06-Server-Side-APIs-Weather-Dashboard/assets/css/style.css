@@ -99,20 +99,22 @@ p {
 }
 
 .list-group {
-  padding: 0;
+  padding: 2%;
   list-style: none;
+  text-align: center;
 }
 
-.list-item {
+.list-group li button{
   margin-bottom: 10px;
   padding: 1.5%;
   border-radius: var(--border-radius);
   background-color: var(--light-dark);
   color: var(--primary);
   text-decoration: none;
+  min-width: 150px;
 }
 
-.list-item:hover {
+.list-group li button:hover {
   background-color: var(--dark);
 }
 
