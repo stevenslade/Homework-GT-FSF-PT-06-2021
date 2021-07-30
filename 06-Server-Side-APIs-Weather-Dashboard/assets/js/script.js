@@ -32,19 +32,21 @@ function getFiveDayApi(lat, lon) {
       return response.json();
     })
     .then(function (data) {
+      //[0] is the current day
       console.log(data);
-      //console.log("data.list[0]: ", data.list[0]);
-      
-      //console.log("data.list[0].main.temp: ", data.list[0].main.temp);
-      //console.log("data.list[0].main.humidity: ", data.list[0].main.humidity);
+      console.log("date");
+      console.log("Icon", data.daily[0].weather[0].icon);
+      console.log("Temp", data.daily[0].temp.max);
+      console.log("Humidity", data.daily[0].humidity);
+      console.log("UV Index", data.daily[0].uvi);
+
+      for(i =1; i <6; i++){
+        //need to populate the 5 day forcast containers
+
+      }
 
 
-      // need to find the forecast date using moment
-
-      // console.log("Temp: ", data.main.temp);
-      // console.log("Wind: ", data.wind.speed);
-      // console.log("Humidity: ", data.main.humidity);
-      // console.log("Description: ", data.weather[0].description);
+     
 
       // the query is successful I have the values I need to set the today card
       // you don't need variable to use textContent if you have ids
