@@ -94,7 +94,7 @@ p {
   background-color:blue;
   color: white;
   margin:1%
-  /* This border raius is cancelling my margin */
+  /* This border radius is cancelling my margin */
   /* border-radius: 1px; */
 }
 

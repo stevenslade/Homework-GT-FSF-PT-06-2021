@@ -40,21 +40,55 @@ function getFiveDayApi(lat, lon) {
       console.log("Humidity", data.daily[0].humidity);
       console.log("UV Index", data.daily[0].uvi);
 
-      for(i =1; i <6; i++){
-        //need to populate the 5 day forcast containers
+      for(i = 1; i <6; i++){
+        // need to populate the 5 day forcast containers
+        // steps create a variable with the value I want to display
+        // create the elements I need on my html page but alo make the
+        // containers to hold them
+        // append the items to each other, the appended item is a child
+        // set the attributes, notice multiple classes in one statement
+        // 
+
+        // create the variables
+        var date = "day";
+        var temp = data.daily[i].temp.max;
+        var icon = data.daily[i].weather[0].icon;
+        var iconHttp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+        var humidity = data.daily[i].humidity;
+        var uv = data.daily[i].uvi;
+        //create an element
+        var col = document.createElement("div");
+        var card = document.createElement("div");
+        var cardTitle = document.createElement("h4");
+        var body = document.createElement("div");
+        var iconEl = document.createElement("img");
+        var tempEl = document.createElement("p");
+        var humEl = document.createElement("p");
+        var uviEl = document.createElement("p");
+
+        //append to html - need to append before attaching a class
+        col.append(card);
+        card.append(body);
+        body.append(cardTitle, iconEl, tempEl, humEl, uviEl);
+        
+       
+        //attach a class - set attribute
+        col.setAttribute('class', "col weatherDay");
+
+        //use text content to to assign content to html elements
+        cardTitle.textContent = date;
+        iconEl.setAttribute('src', iconHttp);
+        tempEl.textContent = temp;
+        humEl.textContent = humidity;
+        uviEl.textContent = uv;
+
+        //appened the new container to the document
+        forecastAnchor.append(col);
 
       }
 
-
-     
-
-      // the query is successful I have the values I need to set the today card
-      // you don't need variable to use textContent if you have ids
       searchUVindex.textContent = "UV Index: " + data.current.uvi;
-      // searchTemp.textContent =  "Temp (F): " + data.main.temp;
-      // searchWind.textContent = "Wind (mph): " + data.wind.speed;
-      // searchHumidity.textContent = "Humidity (%): " + data.main.humidity;
-      // searchDescription.textContent = "Description: " + data.weather[0].description;    
+        
     });
   }
 
