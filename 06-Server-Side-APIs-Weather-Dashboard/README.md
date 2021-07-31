@@ -17,6 +17,6 @@ Assignment for sixth week, Server Side APIs: Weather Dashboard
 
 This link will take you to my homework repo (https://github.com/stevenslade/Homework-GT-FSF-PT-06-2021) from which you will find sub directories for each weekly assignment
 
-This link will take you to the homework for this week, "05-Third-Party-APIs-Work-Day-Scheduler" folder inside my repo (https://github.com/stevenslade/Homework-GT-FSF-PT-06-2021/tree/main/06-Server-Side-APIs-Weather-Dashboard)
+This link will take you to the homework for this week, "06-Server-Side-APIs-Weather-Dashboard" folder inside my repo (https://github.com/stevenslade/Homework-GT-FSF-PT-06-2021/tree/main/06-Server-Side-APIs-Weather-Dashboard)
 
 
