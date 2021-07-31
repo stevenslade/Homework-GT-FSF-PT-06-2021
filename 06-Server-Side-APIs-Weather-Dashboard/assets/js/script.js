@@ -24,7 +24,7 @@ function getFiveDayApi(lat, lon) {
 
   //The five day API request is not working, try the one call request
 
-  var oneCallQueryUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&appid=" + APIKey;
+  var oneCallQueryUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=" + APIKey;
 
   // This request is for  
   fetch(oneCallQueryUrl)
@@ -33,12 +33,13 @@ function getFiveDayApi(lat, lon) {
     })
     .then(function (data) {
       //[0] is the current day
-      console.log(data);
-      console.log("date");
-      console.log("Icon", data.daily[0].weather[0].icon);
-      console.log("Temp", data.daily[0].temp.max);
-      console.log("Humidity", data.daily[0].humidity);
-      console.log("UV Index", data.daily[0].uvi);
+      //These are all checks to see how to pull the data
+      // console.log("onecall data: ", data);
+      // console.log("date");
+      // console.log("Icon", data.daily[0].weather[0].icon);
+      // console.log("Temp", data.daily[0].temp.max);
+      // console.log("Humidity", data.daily[0].humidity);
+      // console.log("UV Index", data.daily[0].uvi);
 
       for(i = 1; i <6; i++){
         // need to populate the 5 day forcast containers
@@ -47,10 +48,12 @@ function getFiveDayApi(lat, lon) {
         // containers to hold them
         // append the items to each other, the appended item is a child
         // set the attributes, notice multiple classes in one statement
-        // 
+        // append the new container to the document as the last step
 
         // create the variables
-        var date = "day";
+        var iterationMoment = moment().add(i, 'days');
+        var date = (iterationMoment.format('MM/D/YY'));
+        //console.log("displayMoment", displayMoment);
         var temp = data.daily[i].temp.max;
         var icon = data.daily[i].weather[0].icon;
         var iconHttp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
@@ -70,23 +73,21 @@ function getFiveDayApi(lat, lon) {
         col.append(card);
         card.append(body);
         body.append(cardTitle, iconEl, tempEl, humEl, uviEl);
-        
-       
+           
         //attach a class - set attribute
         col.setAttribute('class', "col weatherDay");
 
         //use text content to to assign content to html elements
         cardTitle.textContent = date;
         iconEl.setAttribute('src', iconHttp);
-        tempEl.textContent = temp;
-        humEl.textContent = humidity;
-        uviEl.textContent = uv;
+        tempEl.textContent = "Temp (F): " + temp;
+        humEl.textContent = "Humidity (%): " + humidity;
+        uviEl.textContent = "UV Index: " + uv;
 
         //appened the new container to the document
         forecastAnchor.append(col);
 
       }
-
       searchUVindex.textContent = "UV Index: " + data.current.uvi;
         
     });

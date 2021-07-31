@@ -21,7 +21,7 @@
 
   <main class="flex-row justify-space-between">
 
-    <div class="col-12 col-md-3">
+    <div class="col-12 col-md-3 col-lg-2">
       <div class="card">
         <h3 class="card-header">SEARCH FOR A CITY</h3>
         <form id="user-form" class="card-body">
@@ -40,29 +40,31 @@
       </div>
     </div>
 
-    <div class="col-12 col-md-9">
+    <div class="col-12 col-md-9 col-lg-10">
       <h2 class="subtitle">Showing Weather for:</h2>
        <div class ="currentCity">
-         <h4 id="searchCityDate">No City Selected</h4> 
-         <p id="searchTemp">Temp:</p>
-         <p id="searchWind">Wind:</p>
-         <p id="searchHumidity">Humidity:</p>
-         <p id="searchDescription">Description:</p>
-         <p id="searchUVindex">UV Index:</p>
+         <div>
+           <h4 id="searchCityDate">No City Selected</h4> 
+           <p id="searchTemp">Temp:</p>
+           <p id="searchWind">Wind:</p>
+           <p id="searchHumidity">Humidity:</p>
+           <p id="searchDescription">Description:</p>
+           <p id="searchUVindex">UV Index:</p>
+         </div>
        </div>
 
       <div class="col-12"><h4>5-Day Forecast:</h4></div>
 
       <div class="container">
         <div id="forecastAnchor" class="row dayForecasts">
-          <div class="col weatherDay">
+          <!-- <div class="col weatherDay">
             <p>Date</p>
-            <!-- Weather Icon -->
+            Weather Icon
             <img src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon">
             <p>Temp:</p>
             <p>Humidity:</p>
             <p>UV Index:</p>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
