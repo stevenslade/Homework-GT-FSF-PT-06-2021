@@ -41,6 +41,12 @@ function getFiveDayApi(lat, lon) {
       // console.log("Humidity", data.daily[0].humidity);
       // console.log("UV Index", data.daily[0].uvi);
 
+      //before we enter the loop to create and append elements to the forecastAnchor
+      //we need to clean it of any previously attached elements
+      while (forecastAnchor.firstChild) {
+        forecastAnchor.removeChild(forecastAnchor.firstChild);
+      }
+
       for(i = 1; i <6; i++){
         // need to populate the 5 day forcast containers
         // steps create a variable with the value I want to display
@@ -86,13 +92,10 @@ function getFiveDayApi(lat, lon) {
 
         //appened the new container to the document
         forecastAnchor.append(col);
-
       }
-      searchUVindex.textContent = "UV Index: " + data.current.uvi;
-        
+      searchUVindex.textContent = "UV Index: " + data.current.uvi;   
     });
   }
-
 
 // Send an API request to the URL
 
