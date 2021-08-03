@@ -117,7 +117,7 @@ function getFiveDayApi(lat, lon) {
 function getApi(city) {
 
   //need a request Url 
-  var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
+  var queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
 
   // This request is for open weather  
   fetch(queryUrl)
