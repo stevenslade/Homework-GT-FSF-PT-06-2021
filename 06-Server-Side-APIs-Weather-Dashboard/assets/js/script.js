@@ -62,7 +62,7 @@ function getFiveDayApi(lat, lon) {
         //console.log("displayMoment", displayMoment);
         var temp = data.daily[i].temp.max;
         var icon = data.daily[i].weather[0].icon;
-        var iconHttp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+        var iconHttp = "https://openweathermap.org/img/wn/" + icon + "@2x.png";
         var humidity = data.daily[i].humidity;
         var uv = data.daily[i].uvi;
         //create an element
