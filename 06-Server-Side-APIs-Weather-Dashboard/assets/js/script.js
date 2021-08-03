@@ -1,13 +1,10 @@
 //Content to display time 
 var datetime = document.querySelector('#currentDay');
 
-//APIKey for the request to openweather
-var APIKey = "18478b8e8991a96f7973ebca1c12f563";
-
 var date = moment(new Date())
 datetime.textContent = (date.format('dddd, MMMM Do YYYY'));
 
-//Need the date in MM/DD/YY for the weather card
+//Format the date in MM/DD/YY for the weather card
 var todayDate = (date.format('MM/D/YY'));
 
 //APIKey for the request to openweather
@@ -32,21 +29,13 @@ function getFiveDayApi(lat, lon) {
       return response.json();
     })
     .then(function (data) {
-      //[0] is the current day
-      //These are all checks to see how to pull the data
-      // console.log("onecall data: ", data);
-      // console.log("date");
-      // console.log("Icon", data.daily[0].weather[0].icon);
-      // console.log("Temp", data.daily[0].temp.max);
-      // console.log("Humidity", data.daily[0].humidity);
-      // console.log("UV Index", data.daily[0].uvi);
-
       //before we enter the loop to create and append elements to the forecastAnchor
       //we need to clean it of any previously attached elements
       while (forecastAnchor.firstChild) {
         forecastAnchor.removeChild(forecastAnchor.firstChild);
       }
 
+      //[0] is the current day so start at 1
       for(i = 1; i <6; i++){
         // need to populate the 5 day forcast containers
         // steps create a variable with the value I want to display
@@ -146,7 +135,7 @@ function getApi(city) {
       var currentIconEl = document.createElement("img");
       //set attribute, specifically make it an src with  a link
       currentIconEl.setAttribute('src', currentIconHttp);
-      //appened the new element to the document to the city name
+      //append the new element to the document to the city name
       searchCityDate.append(currentIconEl);
 
       //THESE VARIABLE PULLS FROM THE FETCH DATA
@@ -171,7 +160,6 @@ function displaySavedLocations() {
   var locations = localStorage.getItem("savedLocations");
   if (locations) {
     parsedLocations = JSON.parse(locations);
-    //console.log(parsedLocations);
 
     //need to clear any existing html elements
     while (historyEl.firstChild) {
@@ -197,7 +185,6 @@ function displaySavedLocations() {
 function updateContentPane (evt){
   var buttonClicked = evt.target;
   var location = buttonClicked.getAttribute("data-location");
-  //console.log("location from updateContentPane: ", location);
   // call the fetch function with the location from the attribute
   getApi(location);
 }
