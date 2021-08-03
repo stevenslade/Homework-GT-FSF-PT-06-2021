@@ -93,7 +93,22 @@ function getFiveDayApi(lat, lon) {
         //appened the new container to the document
         forecastAnchor.append(col);
       }
-      searchUVindex.textContent = "UV Index: " + data.current.uvi;   
+
+      //variable for current day uvi
+      var currentDayUvi = data.current.uvi;
+
+      searchUVindex.textContent = "UV Index: " + currentDayUvi;
+
+      //Need to set a backgournd color, maybe by setting class depending on the UV index value
+      if (currentDayUvi <= 2) {
+        searchUVindex.setAttribute('class', "uvilow");
+      } else if (currentDayUvi <= 5) {
+        searchUVindex.setAttribute('class', "uvimod");
+      } else if (currentDayUvi <= 7) {
+        searchUVindex.setAttribute('class', "uvihigh");
+      } else if (currentDayUvi > 7) {
+        searchUVindex.setAttribute('class', "uviveryhigh");
+      }
     });
   }
 
@@ -104,9 +119,13 @@ function getApi(city) {
   //need a request Url 
   var queryUrl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&appid=" + APIKey;
 
-  // This request is for  
+  // This request is for open weather  
   fetch(queryUrl)
   .then(function (response) {
+     //start of code to redirect in the event of of 404 event
+    //  if (response.status !== 200) {
+    //    document.location.replace('./404.html')
+    //  } else - NEED TO INCLUDE THE LINE BELOW IN THE ELSE STATEMENT
       return response.json();
     })
     .then(function (data) {
@@ -118,10 +137,11 @@ function getApi(city) {
       searchHumidity.textContent = "Humidity (%): " + data.main.humidity;
       searchDescription.textContent = "Description: " + data.weather[0].description;      
 
-      //NEED TO MAKE THESE ACTUAL VARIABLE PULLS FROM THE FETCH DATA
+      //THESE VARIABLE PULLS FROM THE FETCH DATA
       var lat = data.coord.lat;
       var lon = data.coord.lon;
 
+      //call my fiveDayApi function to get the five day forecast
       getFiveDayApi(lat, lon);      
 
     });
@@ -171,6 +191,7 @@ function updateContentPane (evt){
 }
 
 function getLocation(evt) {
+  //If form input always use prevent default
   evt.preventDefault();
   var location = searchInputEl.value;
 
@@ -181,6 +202,7 @@ function getLocation(evt) {
   //call the function to save my updated parsedLocations
   saveNewLocation();
   }
+
   // Call the fetch Function here aftering getting the location
   // and hand the function the location
   getApi(location);
