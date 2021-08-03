@@ -22,7 +22,7 @@ var parsedLocations = [];
 //Need an API pull to get the 5 day forecast using the same key and same city
 function getFiveDayApi(lat, lon) {
 
-  //The five day API request is not working, try the one call request
+  //one call request
 
   var oneCallQueryUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly&units=imperial&appid=" + APIKey;
 
@@ -131,11 +131,23 @@ function getApi(city) {
     .then(function (data) {
       // the query is successful I have the values I need to set the today card
       // you don't need variable to use textContent if you have ids
+ 
       searchCityDate.textContent = data.name + "   (" + todayDate +")";
       searchTemp.textContent =  "Temp (F): " + data.main.temp;
       searchWind.textContent = "Wind (mph): " + data.wind.speed;
       searchHumidity.textContent = "Humidity (%): " + data.main.humidity;
-      searchDescription.textContent = "Description: " + data.weather[0].description;      
+      searchDescription.textContent = "Description: " + data.weather[0].description;
+      
+      //make the searched city's icon a variable so it can be attached
+      var currentIcon = data.weather[0].icon;
+      var currentIconHttp = "https://openweathermap.org/img/wn/" + currentIcon + "@2x.png";
+
+      //Create image element
+      var currentIconEl = document.createElement("img");
+      //set attribute, specifically make it an src with  a link
+      currentIconEl.setAttribute('src', currentIconHttp);
+      //appened the new element to the document to the city name
+      searchCityDate.append(currentIconEl);
 
       //THESE VARIABLE PULLS FROM THE FETCH DATA
       var lat = data.coord.lat;
